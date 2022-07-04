@@ -61,9 +61,7 @@ function Login() {
                     <h4 style={{ fontSize: "28px", marginTop: "60px" }}>Bem vindo(a) </h4>
                     <p style={{ marginBottom: "60px", fontWeight: 700, fontSize: "16px", color: "rgb(119, 119, 119)" }}>Entre em sua conta para começar</p>
                 </div>
-                <h5>{submitemail}</h5>
-                <h5>{submitpassword}</h5>
-                <h5>{lembrar}</h5>
+               
                 <Formik
                     initialValues={initialValues}
                     onSubmit={() => { }}
@@ -77,17 +75,17 @@ function Login() {
                             
                         }}  >
 
+                            <div style={{border:"1px solid gray"}} className="form-control">
+                            <TextField placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
 
-                            <TextField type="text" name="email" label={"Email"} />
-
-                            <TextField type="password" name="password" label={"Senha"} />
-
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "40px" }}>
+                            <TextField placeHolder={"Digite sua senha"} type="password" name="senha" label={"Senha"} />
+                            </div>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "30px" }}>
                                 <div className="form-check form-switch">
                                     <input onChange={(e: any) => setLembrar(Boolean(!lembrar))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                                     <label style={{ fontWeight: 600, cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
                                 </div>
-                                <a href="#" style={{ textDecoration: "none", color: "rgb(0, 132, 137)", marginLeft: "10px", fontWeight: 700, fontSize: "16px" }}>Esqueceu a senha?</a>
+                                <a href="/" style={{ textDecoration: "none", color: "rgb(0, 132, 137)", marginLeft: "10px", fontWeight: 700, fontSize: "16px" }}>Esqueceu a senha?</a>
 
                             </div>
 
@@ -111,7 +109,7 @@ function Login() {
                     )}
 
                 </Formik>
-
+                <a style={{textDecoration:"none",display:"flex",justifyContent:"center",marginTop:"10px"}} href="/signin">Criar Conta</a>
             </div>
         </>
     )

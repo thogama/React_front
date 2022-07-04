@@ -4,6 +4,7 @@ import HomePage from "../views/HomePage"
 
 import { BrowserRouter,Navigate,Route,Routes} from "react-router-dom"
 import {AuthProvider,AuthContext} from "../contexts/auth"
+import Sigin from "../views/Sigin"
 
 
 
@@ -33,6 +34,7 @@ export default function AppRoutes(){
                 <Route element = {<Navigate to="/login"/>} path = "/" />
                 <Route element = {<LoginView/>} path = '/login'/>
                 <Route element = {<Private><HomePage/></Private>} path = '/home'/>
+                <Route element = {<Sigin/>} path = '/signin'/>
             </Routes>
           </AuthProvider>
         
