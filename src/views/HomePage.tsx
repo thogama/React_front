@@ -1,3 +1,5 @@
+import FullLayout from "../layouts/FullLayout"
+
 export default function HomePage(){
 
 
@@ -5,7 +7,7 @@ export default function HomePage(){
 
     return (
         <>
-        HomePage
+        <FullLayout/> 
         </>
 
     )

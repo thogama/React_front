@@ -80,7 +80,7 @@ function Login() {
 
                             <TextField placeHolder={"Digite sua senha"} type="password" name="password" label={"Senha"} />
                             </div>
-                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "30px" }}>
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "15px" }}>
                                 <div className="form-check form-switch">
                                     <input onChange={(e: any) => setLembrar(Boolean(!lembrar))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                                     <label style={{ fontWeight: 600, cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
