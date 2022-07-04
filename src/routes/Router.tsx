@@ -42,7 +42,7 @@ const ThemeRoutes = [
     ],
   },
   { path: "/", element: <Navigate to="/login" /> },
-  { path: "/login", exact: true, element: <Login/>},
+  { path: "/login", exact: true, element: <div>Login</div>},
 
 ];
 
