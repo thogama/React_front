@@ -26,7 +26,7 @@ function Login() {
             .email("Email Inválido")
             .required("É necessário digitar um email!"),
 
-        senha: Yup.string()
+        password: Yup.string()
             .required("É necessário digitar uma senha!")
             .min(6, "Senha muito curta!")
             .max(10, "Senha muito longa!"),
@@ -38,7 +38,7 @@ function Login() {
         setEmail(email)
         setLembrar(lembrar)
         setPassowrd(password)
-        console.log("login")
+        console.log("login",submitemail,password)
         login(submitemail,submitpassword)
 
 
@@ -78,7 +78,7 @@ function Login() {
                             <div style={{border:"1px solid gray"}} className="form-control">
                             <TextField placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
 
-                            <TextField placeHolder={"Digite sua senha"} type="password" name="senha" label={"Senha"} />
+                            <TextField placeHolder={"Digite sua senha"} type="password" name="password" label={"Senha"} />
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "30px" }}>
                                 <div className="form-check form-switch">
