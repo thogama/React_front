@@ -19,7 +19,6 @@ export const TextField = ({ label, ...props }) => {
             <div className="myField" style={{ display: "flex", alignItems: "center" }}>
                 <input {...field} {...props} style={{ fontSize: "21px", minHeight: "48px" }}
                     className={`form-control shadow-none ${meta.touched && meta.error && 'error ' || meta.touched && !meta.error && `success`}`}
-                    
                     autoComplete="off" type={props.type}>
 
 

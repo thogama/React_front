@@ -1,12 +1,18 @@
-import { useRoutes } from "react-router-dom";
-import Themeroutes from "./routes/Router";
+import React,{useEffect} from "react"
+
+import AppRoutes from "./routes/Router";
 
 
-function App(){
-  const routing = useRoutes(Themeroutes);
+function App() {
 
+  
   return (
-    <div className="dark">{routing}</div>)
-};
+    <div className="App">
+      <header  className="App-header">
+        <AppRoutes/>
+      </header>
+    </div>
+  );
+}
 
 export default App;

@@ -77,11 +77,11 @@ export const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({ child
         api.defaults.headers.common["Authorization"] = "";
 
         setUser({ "email": "", "password": "" })
-        navigate("/login/paciente")
+        navigate("/login")
     }
 
     return (
-        <AuthContext.Provider value={{ authenticated: !!(user.email.length !== 0),all, load,invalid, user, login, logout }}>
+        <AuthContext.Provider value={{authenticated: !!(user.email.length !== 0), all, load,invalid, user, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
