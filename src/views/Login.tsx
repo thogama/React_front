@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import Logo from "../assets2/logo-com-nome-slogan.png"
-import { Formik, Form } from "formik"
+import { Formik, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { TextField } from "../components/TextField.js"
 import { AuthContext } from "../contexts/auth"
@@ -109,6 +109,7 @@ function Login() {
                     )}
 
                 </Formik>
+                
                 <a style={{textDecoration:"none",display:"flex",justifyContent:"center",marginTop:"10px"}} href="/signin">Criar Conta</a>
             </div>
         </>

@@ -17,7 +17,7 @@ export const TextField = ({ label, ...props }) => {
                 {label}
             </label>
             <div className="myField" style={{ display: "flex", alignItems: "center" }}>
-                <input {...field} {...props} style={{ fontSize: "21px", minHeight: "48px" }}
+                <input {...field} {...props} style={{ fontSize: "20px", minHeight: "48px" }}
                     className={`form-control shadow-none ${meta.touched && meta.error && 'error ' || meta.touched && !meta.error && `success`}`}
                     autoComplete="off" type={props.type}>
 
@@ -39,9 +39,9 @@ export const TextField = ({ label, ...props }) => {
 
 
 
-
+            <div style={{display:"flex",color:"red",justifyContent:"center",marginTop:"5px"}}>
             <ErrorMessage name={field.name} />
-
+            </div>
 
         </div>
     )
