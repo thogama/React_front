@@ -14,6 +14,7 @@ import {
   Button,
 } from "reactstrap";
 import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
+import realLogo from "../assets2/logo-limpa.png"
 import user1 from "../assets/images/users/user1.jpg";
 
 const Header = () => {
@@ -29,9 +30,9 @@ const Header = () => {
   };
   return (
     <Navbar color="primary" dark expand="md">
-      <div className="d-flex align-items-center">
+      <div className="">
         <NavbarBrand href="/" className="d-lg-none">
-          <LogoWhite />
+          <img style={{width:"45px"}} src={realLogo}/>
         </NavbarBrand>
         <Button
           color="primary"

@@ -88,7 +88,7 @@ function Sigin() {
                 >
                     {({ errors, values }) => (
 
-                        <Form onSubmit={() =>console.log(values)}  >
+                        <Form onSubmit={() =>{}}  >
 
                             <div style={{ border: "1px solid gray" }} className="form-control">
                                 <TextField style={{ maxWidth: "10px" }} placeHolder={"Digite seu nome"} type="text" name="nome" label={"Nome"} />

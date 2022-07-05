@@ -85,13 +85,13 @@ function Login() {
                                     <input onChange={(e: any) => setLembrar(Boolean(!lembrar))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                                     <label style={{ fontWeight: 600, cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
                                 </div>
-                                <a href="/" style={{ textDecoration: "none", color: "rgb(0, 132, 137)", marginLeft: "10px", fontWeight: 700, fontSize: "16px" }}>Esqueceu a senha?</a>
+                                <a href="/" style={{ textDecoration: "none", color: "#0bb7af", marginLeft: "10px", fontWeight: 700, fontSize: "16px" }}>Esqueceu a senha?</a>
 
                             </div>
 
                             <button className="text-light hover-overlay" style={{
                                 border: "none",
-                                width: "100%", backgroundColor: "rgb(0, 132, 137)",
+                                width: "100%", backgroundColor: "#2962ff",
                                 alignItems: "center", fontWeight: 700,
                                 display: "flex", height: "57px",
                                 flexDirection: "column",
