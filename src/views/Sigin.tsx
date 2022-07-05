@@ -4,6 +4,7 @@ import logo from "../assets2/logo-com-nome-slogan.png"
 import { createPaciente } from "../services/api"
 import { TextField } from "../components/TextField"
 import { Formik, Form } from "formik"
+import logo2 from "../assets2/logo-limpa.png"
 
 
 function Sigin() {
@@ -41,9 +42,12 @@ function Sigin() {
     const disable = () => {
         const campo = document.getElementById("disable_me")
         if (!campo?.hasAttribute("disabled")) {
+            campo?.setAttribute("value", "")
+
             campo?.setAttribute("disabled", "true")
         }
         else {
+
             campo?.removeAttribute("disabled")
 
         }
@@ -71,56 +75,63 @@ function Sigin() {
 
 
 
-            <div style={{ display: "flex", flexDirection: "column", border: "solid #d4d4d4 5px", borderRadius: "5px", padding: "1rem" }} className="form-control">
+            <div style={{  display: "flex", flexDirection: "column", border: "solid #d4d4d4 5px", borderRadius: "5px", padding: "1rem" }} className="form-control">
                 <img src={logo} alt="logo" />
 
-                <h3 style={{ marginBottom:"30px",marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "25px"}}></h3>
+                <h3 style={{ marginBottom: "30px", marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "25px" }}></h3>
 
-                <h5 style={{ marginBottom:"30px",marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "20px", color: "rgb(119, 119, 119)" }}>Dados do Paciente</h5>
+                <h5 style={{ marginBottom: "30px", marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "20px", color: "rgb(119, 119, 119)" }}>Dados do Paciente</h5>
                 <Formik
                     initialValues={{}}
                     onSubmit={() => { }}
-                    
+
                 >
                     {({ errors, values }) => (
 
-                        <Form onSubmit={()=>{}}  >
+                        <Form onSubmit={() =>console.log(values)}  >
 
                             <div style={{ border: "1px solid gray" }} className="form-control">
-                                <TextField style={{maxWidth:"10px"}} placeHolder={"Digite seu nome"} type="text" name="nome" label={"Nome"} />
+                                <TextField style={{ maxWidth: "10px" }} placeHolder={"Digite seu nome"} type="text" name="nome" label={"Nome"} />
 
                                 <TextField placeHolder={"Digite seu CPF"} type="text" name="cpf" label={"CPF"} />
 
-                                <TextField placeHolder={"Digite seu email"} type="text" name="email" label={"Email"}/>
+                                <TextField placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
 
-                                <TextField placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"}/>
+                                <TextField placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
 
-                                <TextField placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"}/>
+                                <TextField placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"} />
 
-                                
+
                             </div>
-                            <h5 style={{ marginBottom:"30px",marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "20px", color: "rgb(119, 119, 119)" }}>Endereço</h5>
+                            <h5 style={{ marginBottom: "30px", marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "20px", color: "rgb(119, 119, 119)" }}>Endereço</h5>
 
-                            <div style={{marginTop:"30px", border: "1px solid gray" }} className="form-control">
+                            <div style={{ marginTop: "30px", border: "1px solid gray" }} className="form-control">
                                 <TextField placeHolder={"Nome da rua"} type="text" name="rua" label={"Rua"} />
 
                                 <TextField placeHolder={"Número"} type="text" name="numero" label={"Numero"} />
 
-                                <TextField placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"}/>
+                                <TextField placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"} />
 
-                                <TextField placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"}/>
+                                <TextField placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"} />
 
-                                <TextField placeHolder={"Complemento"} type="text" name="complemento" label={"Complemento"}/>
+                                <TextField placeHolder={"Complemento"} type="text" name="complemento" label={"Complemento"} />
 
-                                <TextField placeHolder={"Digite seu CEP"} type="text" name="CEP" label={"CEP"}/>
+                                <TextField placeHolder={"Digite seu CEP"} type="text" name="CEP" label={"CEP"} />
 
-                                <TextField placeHolder={"Digite seu município"} type="text" name="município" label={"Município"}/>
-                                
-                                
+                                <TextField placeHolder={"Digite seu município"} type="text" name="município" label={"Município"} />
+
+                                <div style={{ display: "flex", justifyContent: "center" }} className=" form-switch">
+
+                                    <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" onClick={() => disable()} />
+                                    <span className="lever"></span>
+
+                                </div>
+                                <TextField id="disable_me" disabled label={"Plano"} placeHolder={"Numero do plano"} type="text" name="planosaude" ></TextField>
+
                             </div>
-                            
 
-                            
+
+
 
 
 
@@ -131,48 +142,29 @@ function Sigin() {
 
                 </Formik>
 
-                
-                <div style={{ border: "solid #d4d4d4 1px", borderRadius: "5px", padding: "1rem", margin: "1rem auto" }} className=" container hoverable card indigo lighten-5 row">
-                    <span> Plano de Saúde</span>
 
-                    <div className="switch">
-                        <label>
+                <h5 style={{ marginBottom: "30px", marginTop: "30px", display: "flex", justifyContent: "center", fontWeight: 600, fontSize: "20px", color: "rgb(119, 119, 119)" }}>Sobre você</h5>
 
-                            <input onClick={() => disable()} type="checkbox" />
-                            <span className="lever"></span>
+                <div style={{ border: "1px solid gray" }} id="mne" className="form-control">
 
-                        </label>
-                    </div>
-
-
-                    <div className="input-field col s12 l12  "  >
-                        <input disabled value={plano_saude} onChange={e => setPlano(e.target.value)} placeholder="Nome do plano" id="disable_me" type="text" className="validate center" />
-
-
-
-                    </div>
-                    <br />
-                </div>
-                <div style={{ border: "solid #d4d4d4 1px", borderRadius: "5px", padding: "1rem", margin: "1rem auto" }} id="mne" className="hoverable container row card indigo lighten-5 row">
-
-                    <div className="col s6 l2 input-field " >
-                        <select value={sexo} onChange={e => setSexo(e.target.value)} >
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={sexo} onChange={e => setSexo(e.target.value)} >
                             <option value="" disabled selected>Sexo</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Feminino">Feminino</option>
                         </select>
 
                     </div>
-                    <div className="col s12 l10 input-field">
-                        <select value={medicamento} onChange={e => setMedicamento(e.target.value)}>
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={medicamento} onChange={e => setMedicamento(e.target.value)}>
                             <option value="" disabled selected>Medicamento em Uso</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
 
                     </div>
-                    <div className="col s6 l12 input-field">
-                        <select value={alergia} onChange={e => setAlergia(e.target.value)}>
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={alergia} onChange={e => setAlergia(e.target.value)}>
                             <option value="" disabled selected>Alergia</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
@@ -180,59 +172,62 @@ function Sigin() {
 
                     </div>
 
-                    <div className="col s6 l2 input-field">
-                        <select value={fuma} onChange={e => setFuma(e.target.value)}>
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={fuma} onChange={e => setFuma(e.target.value)}>
                             <option value="" disabled selected>Fuma</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
                     </div>
-                    <div className="col s12 l3 input-field">
-                        <select value={hipertensao} onChange={e => setHipertensao(e.target.value)}>
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={hipertensao} onChange={e => setHipertensao(e.target.value)}>
                             <option value="" disabled selected>Hipertensão</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
                     </div>
-                    <div className="col s6 l3 input-field">
-                        <select value={diabetes} onChange={e => setDiabetes(e.target.value)}>
+                    <div style={{ marginTop: "15px" }}>
+                        <select className="form-select form-select-lg" value={diabetes} onChange={e => setDiabetes(e.target.value)}>
                             <option value="" disabled selected>Diabetes</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
                     </div>
-                    <div className="col s12 l4 input-field">
-                        <select value={bebida_alcoolica} onChange={e => setBebida(e.target.value)}>
+                    <div style={{ marginTop: "15px", marginBottom: "15px" }}>
+                        <select className="form-select form-select-lg" value={bebida_alcoolica} onChange={e => setBebida(e.target.value)}>
                             <option value="" disabled selected>Bebida Alcoolica</option>
                             <option value="1">Sim</option>
                             <option value="0">Não</option>
                         </select>
 
                     </div>
-
-
-
-
-
-
+                    
                 </div>
 
+                <button type="button" onClick={() => handleCriarConta()} style={{
+                                border: "none",
+                                marginTop:"40px",
+                                width: "100%", backgroundColor: "rgb(0, 137, 42)",
+                                alignItems: "center", fontWeight: 700,
+                                display: "flex", height: "57px",
+                                flexDirection: "column",
+                                justifyContent: "space-around",
+                                borderRadius: "5px"}} className="text-light hover-overlay" >
+                    CADASTRAR
+                </button >
 
-                <div className="row container ">
-                    <div onClick={() => handleCriarConta()} style={{ marginTop: "1rem" }} className="  white-text col s12 l8 offset-l2 row waves-effect waves-light btn-small indigo" >
-                        CADASTRAR
-                    </div>
-                </div>
+                
 
 
-
-                <a onClick={() => tenhoconta("../login/paciente")} className="col s8 l4 offset-l4 offset-s2 center waves-effect waves-light  ">
+                <a style={{display:"flex",justifyContent:"center",marginTop:"15px", textDecoration: "none" }} onClick={() => tenhoconta("../login")} className="">
                     Já possui conta?
 
                 </a>
+
+                
             </div>
 
-            <br />
+
 
 
         </>

@@ -9,11 +9,9 @@ export const TextField = ({ label, ...props }) => {
 
 
     return (
-        <div className="mb-2">
-            <div style={{ display: "block" }}>
-
-            </div>
-            <label style={{ fontWeight: 600, fontSize: "15px", display: "block", marginBottom: "15px" }} htmlFor={field.name}>
+        <div style={{padding:"5px"}} className="mb-2">
+            
+            <label style={{  fontWeight: 600, fontSize: "15px", display: "block", marginBottom: "15px" }} htmlFor={field.name}>
                 {label}
             </label>
             <div className="myField" style={{ display: "flex", alignItems: "center" }}>
