@@ -9,7 +9,7 @@ export const TextField = ({ label, ...props }) => {
 
 
     return (
-        <div style={{padding:"5px"}} className="mb-2">
+        <div errorsOn={props.errorsOn} style={{padding:"5px"}} className="mb-2">
             
             <label style={{  fontWeight: 600, fontSize: "15px", display: "block", marginBottom: "15px" }} htmlFor={field.name}>
                 {label}
@@ -22,13 +22,15 @@ export const TextField = ({ label, ...props }) => {
 
 
                 </input>
-                {meta.error && meta.touched && (
+                
+
+                
+                {meta.error && props.errorsOn && meta.touched && (
                     <AiOutlineExclamationCircle color="red" size={20} style={{ position: "absolute", right: "15%" }} />
                 )}
-                {!meta.error && meta.touched && (
+                {!meta.error && props.errorsOn && meta.touched && (
                     <AiOutlineCheckCircle color="green" className="success" size={20} style={{border:"none" ,position: "absolute", right: "15%" }} />
                 )}
-
 
             </div>
 
@@ -37,7 +39,7 @@ export const TextField = ({ label, ...props }) => {
 
 
 
-            <div style={{display:"flex",color:"red",justifyContent:"center",marginTop:"5px"}}>
+            <div hidden={props.errorsOn} style={{display:"flex",color:"red",justifyContent:"center",marginTop:"5px"}}>
             <ErrorMessage name={field.name} />
             </div>
 

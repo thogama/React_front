@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -13,13 +13,25 @@ import {
   Dropdown,
   Button,
 } from "reactstrap";
-import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
 import realLogo from "../assets2/logo-limpa.png"
 import user1 from "../assets/images/users/user1.jpg";
-
+import { TextField } from "../components/TextField";
+import { Formik, Form } from "formik";
+import { selectCards } from "../services/api";
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
+
+
+
+  
+  const [cards, setCards] = useState([])
+
+  async function handlePesquisa(param){
+    const cards = await selectCards(param)
+   
+    setCards(cards.data)
+}
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
@@ -29,33 +41,54 @@ const Header = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   return (
-    <Navbar color="primary" dark expand="md">
-      <div className="">
-        <NavbarBrand href="/" className="d-lg-none">
-          <img style={{width:"45px"}} src={realLogo}/>
+    <Navbar style={{}} color="primary" dark expand="md">
+      <div style={{display:"flex",alignItems:"center"}} className="headerRoot">
+        <NavbarBrand style={{marginRight:"0"}}  className="d-lg-none">
+          <img onClick={() => showMobilemenu()} style={{ maxHeight:"48px" }} src={realLogo} />
         </NavbarBrand>
-        <Button
+        {/* <Button
           color="primary"
           className="d-lg-none"
           onClick={() => showMobilemenu()}
         >
           <i className="bi bi-list"></i>
-        </Button>
-      </div>
-      <div className="hstack gap-2">
+        </Button> */}
+        <Formik
+          initialValues={{}}
+          onSubmit={() => { }}
+        >
+          {({ errors, values }) => (
+
+            <Form onSubmit={(e) => {
+              e.preventDefault()
+              
+              handlePesquisa(values.pesquisa)
+              
+            }}  >
+                
+                <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
+                
+            </Form>
+          )}
+          
+        </Formik>
+        
+        <div className="hstack gap-2">
         <Button
-          color="primary"
-          size="sm"
-          className="d-sm-block d-md-none"
+          color="success"
+          size="lg"
+          style={{padding:"1px",height:"48px",border:"0",backgroundColor:"#214ecc"}}
           onClick={Handletoggle}
         >
           {isOpen ? (
             <i className="bi bi-x"></i>
-          ) : (
+          ) : ( 
             <i className="bi bi-three-dots-vertical"></i>
           )}
         </Button>
       </div>
+      </div>
+      
 
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
