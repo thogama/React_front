@@ -38,7 +38,8 @@ function Login() {
         setEmail(email)
         setLembrar(lembrar)
         setPassowrd(password)
-        console.log("login",submitemail,password)
+        //bug
+        console.log("login",submitemail,submitpassword)
         login(submitemail,submitpassword)
 
 

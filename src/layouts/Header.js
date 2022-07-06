@@ -18,20 +18,32 @@ import user1 from "../assets/images/users/user1.jpg";
 import { TextField } from "../components/TextField";
 import { Formik, Form } from "formik";
 import { selectCards } from "../services/api";
-const Header = () => {
+const Header = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
 
 
-  
+
   const [cards, setCards] = useState([])
 
-  async function handlePesquisa(param){
+
+
+  async function handlePesquisa(param) {
     const cards = await selectCards(param)
-   
+
     setCards(cards.data)
-}
+    
+  }
+
+  //faazer funcao que retorna o wrapper completo
+  cards.map(e=>{
+    const findWrapper = document.getElementById("cards_wrapper")
+    console.log(findWrapper,e)
+
+  })
+
+    
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
@@ -42,17 +54,10 @@ const Header = () => {
   };
   return (
     <Navbar style={{}} color="primary" dark expand="md">
-      <div style={{display:"flex",alignItems:"center"}} className="headerRoot">
-        <NavbarBrand style={{marginRight:"0"}}  className="d-lg-none">
-          <img onClick={() => showMobilemenu()} style={{ maxHeight:"48px" }} src={realLogo} />
+      <div style={{ display: "flex", alignItems: "center" }} className="headerRoot">
+        <NavbarBrand style={{ marginRight: "0" }} className="d-lg-none">
+          <img onClick={() => showMobilemenu()} style={{ maxHeight: "48px" }} src={realLogo} />
         </NavbarBrand>
-        {/* <Button
-          color="primary"
-          className="d-lg-none"
-          onClick={() => showMobilemenu()}
-        >
-          <i className="bi bi-list"></i>
-        </Button> */}
         <Formik
           initialValues={{}}
           onSubmit={() => { }}
@@ -61,34 +66,34 @@ const Header = () => {
 
             <Form onSubmit={(e) => {
               e.preventDefault()
-              
+
               handlePesquisa(values.pesquisa)
-              
+
             }}  >
-                
-                <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
-                
+
+              <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
+
             </Form>
           )}
-          
+
         </Formik>
-        
+
         <div className="hstack gap-2">
-        <Button
-          color="success"
-          size="lg"
-          style={{padding:"1px",height:"48px",border:"0",backgroundColor:"#214ecc"}}
-          onClick={Handletoggle}
-        >
-          {isOpen ? (
-            <i className="bi bi-x"></i>
-          ) : ( 
-            <i className="bi bi-three-dots-vertical"></i>
-          )}
-        </Button>
+          <Button
+            color="success"
+            size="lg"
+            style={{ padding: "1px", height: "48px", border: "0", backgroundColor: "#214ecc" }}
+            onClick={Handletoggle}
+          >
+            {isOpen ? (
+              <i className="bi bi-x"></i>
+            ) : (
+              <i className="bi bi-three-dots-vertical"></i>
+            )}
+          </Button>
+        </div>
       </div>
-      </div>
-      
+
 
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
