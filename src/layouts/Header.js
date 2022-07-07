@@ -54,29 +54,11 @@ const Header = (props) => {
       
 
       <Navbar style={{}} color="primary" dark expand="md">
-        <div style={{ display: "flex", alignItems: "center" }} className="headerRoot">
+        <div style={{ display: "flex",justifyContent:"space-between",flexWrap:"wrap" }} className="headerRoot">
           <NavbarBrand style={{ marginRight: "0" }} className="d-lg-none">
             <img onClick={() => showMobilemenu()} style={{ maxHeight: "54px" }} src={realLogo} />
           </NavbarBrand>
-          <Formik
-            initialValues={{}}
-            onSubmit={() => { }}
-          >
-            {({ errors, values }) => (
-
-              <Form onSubmit={(e) => {
-                e.preventDefault()
-
-                handlePesquisa(values.pesquisa)
-
-              }}  >
-
-                <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
-
-              </Form>
-            )}
-
-          </Formik>
+          
 
           <div className="hstack gap-2">
             <Button
@@ -92,11 +74,33 @@ const Header = (props) => {
               )}
             </Button>
           </div>
+          <div style={{width:"100%"}}>
+          <Formik
+            initialValues={{}}
+            onSubmit={() => { }}
+          >
+            {({ errors, values }) => (
+
+              <Form onSubmit={(e) => {
+                e.preventDefault()
+
+                handlePesquisa(values.pesquisa)
+
+              }}  >
+
+                <TextField  errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
+
+              </Form>
+            )}
+
+          </Formik>
+          </div>
 
 
 
 
         </div>
+        
 
 
 
@@ -123,7 +127,9 @@ const Header = (props) => {
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
+            
           </Nav>
+          
           <Dropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle color="primary">
               <img
