@@ -4,10 +4,13 @@ import { selectCards } from "../services/api"
 import { useState, useContext } from "react"
 import { AuthContext } from "../contexts/auth"
 import Card from "../components/Card"
+
+
+
 export default function HomePage() {
 
 
-
+   
 
 
     const { logout } = useContext(AuthContext)
@@ -22,11 +25,13 @@ export default function HomePage() {
             </div>
 
             <Header />
-            <Card nome="Editar comp card" />
-            <div style={{ backgroundColor: "red", }} id="cards_wrapper">
-                
+            
+            <div  style={{ }} id="cards_wrapper">
+                 <Card style={{marginBottom:"10px"}} nome="teste1"/>
+                 <Card style={{marginBottom:"10px"}} nome="teste2"/>
+                 <Card style={{marginBottom:"10px"}} nome="teste3"/>
             </div>
-            <button onClick={handleLogout}>
+            <button style={{padding:"10px"}} onClick={handleLogout}>
                 Deslogar
             </button>
 

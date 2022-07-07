@@ -11,14 +11,12 @@ function Login() {
     
     const {login,authenticated} = useContext(AuthContext)
 
-    const [submitemail, setEmail] = useState("")
-    const [submitpassword, setPassowrd] = useState("")
-    const [lembrar, setLembrar] = useState(false)
+    
 
     const initialValues = {
-        email: submitemail,
-        password: submitpassword,
-        remember: lembrar 
+        email: "",
+        password: "",
+        remember: false
     }
 
     const mySchema = Yup.object({
@@ -35,15 +33,9 @@ function Login() {
 
     function handleLogin(e: any, email: string, password: string, lembrar: boolean) {
         e.preventDefault()
-        setEmail(email)
-        setLembrar(lembrar)
-        setPassowrd(password)
-        //bug
-        console.log("login",submitemail,submitpassword)
-        login(submitemail,submitpassword)
-
-
-
+        
+        console.log(email,password,lembrar)
+        login(email,password)
 
     }
 
@@ -70,8 +62,8 @@ function Login() {
                 >
                     {({ errors, values }) => (
 
-                        <Form onSubmit={(e) => {
-                            values.remember = lembrar
+                        <Form  onSubmit={(e) => {
+                            
                             handleLogin(e,values.email,values.password,values.remember)
                             
                         }}  >
@@ -83,7 +75,7 @@ function Login() {
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", marginBottom: "15px" }}>
                                 <div className="form-check form-switch">
-                                    <input onChange={(e: any) => setLembrar(Boolean(!lembrar))} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                    <input onChange={() => values.remember =!values.remember} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
                                     <label style={{ fontWeight: 600, cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
                                 </div>
                                 <a href="/" style={{ textDecoration: "none", color: "#0bb7af", marginLeft: "10px", fontWeight: 700, fontSize: "16px" }}>Esqueceu a senha?</a>
