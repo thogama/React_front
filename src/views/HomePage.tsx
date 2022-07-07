@@ -4,6 +4,8 @@ import { selectCards } from "../services/api"
 import { useState, useContext } from "react"
 import { AuthContext } from "../contexts/auth"
 import Card from "../components/Card"
+import Sidebar from "../layouts/Sidebar"
+import FullLayout from "../layouts/FullLayout"
 
 
 
@@ -20,17 +22,11 @@ export default function HomePage() {
 
     return (
         <>
-            <div >
-                <img style={{ marginTop: "10rem", width: "100%", opacity: "20%", position: "fixed" }} src={logo} />
-            </div>
-
-            <Header />
             
-            <div  style={{ }} id="cards_wrapper">
-                 <Card style={{marginBottom:"10px"}} nome="teste1"/>
-                 <Card style={{marginBottom:"10px"}} nome="teste2"/>
-                 <Card style={{marginBottom:"10px"}} nome="teste3"/>
-            </div>
+
+            <FullLayout/>
+            
+            
             <button style={{padding:"10px"}} onClick={handleLogout}>
                 Deslogar
             </button>

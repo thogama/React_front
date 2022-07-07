@@ -19,6 +19,7 @@ import { TextField } from "../components/TextField";
 import { Formik, Form } from "formik";
 import { selectCards } from "../services/api";
 import Card from "../components/Card";
+import Sidebar from "./Sidebar";
 const Header = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
@@ -35,7 +36,7 @@ const Header = (props) => {
 
     setCards(cards.data)
 
-
+    console.log(cards.data)
   }
 
 
@@ -50,6 +51,7 @@ const Header = (props) => {
   };
   return (
     <>
+      
 
       <Navbar style={{}} color="primary" dark expand="md">
         <div style={{ display: "flex", alignItems: "center" }} className="headerRoot">
@@ -147,7 +149,7 @@ const Header = (props) => {
         {cards.map(e => {
           const { nome, cnpj, logomarca, } = e
 
-          return <Card nome={nome} cnpj={cnpj} imagem={logomarca} />
+          return <Card name={nome} cnpj={cnpj} image={logomarca} />
 
         })}
       </div>
