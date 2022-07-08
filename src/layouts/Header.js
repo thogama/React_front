@@ -51,14 +51,14 @@ const Header = (props) => {
   };
   return (
     <>
-      
+
 
       <Navbar style={{}} color="primary" dark expand="md">
-        <div style={{ display: "flex",justifyContent:"space-between",flexWrap:"wrap" }} className="headerRoot">
+        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }} className="headerRoot">
           <NavbarBrand style={{ marginRight: "0" }} className="d-lg-none">
             <img onClick={() => showMobilemenu()} style={{ maxHeight: "54px" }} src={realLogo} />
           </NavbarBrand>
-          
+
 
           <div className="hstack gap-2">
             <Button
@@ -74,33 +74,33 @@ const Header = (props) => {
               )}
             </Button>
           </div>
-          <div style={{width:"100%"}}>
-          <Formik
-            initialValues={{}}
-            onSubmit={() => { }}
-          >
-            {({ errors, values }) => (
+          <div style={{ width: "100%" }}>
+            <Formik
+              initialValues={{}}
+              onSubmit={() => { }}
+            >
+              {({ errors, values }) => (
 
-              <Form onSubmit={(e) => {
-                e.preventDefault()
+                <Form onSubmit={(e) => {
+                  e.preventDefault()
 
-                handlePesquisa(values.pesquisa)
+                  handlePesquisa(values.pesquisa)
 
-              }}  >
+                }}  >
 
-                <TextField  errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
+                  <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
 
-              </Form>
-            )}
+                </Form>
+              )}
 
-          </Formik>
+            </Formik>
           </div>
 
 
 
 
         </div>
-        
+
 
 
 
@@ -127,9 +127,9 @@ const Header = (props) => {
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            
+
           </Nav>
-          
+
           <Dropdown isOpen={dropdownOpen} toggle={toggle}>
             <DropdownToggle color="primary">
               <img
@@ -151,13 +151,14 @@ const Header = (props) => {
           </Dropdown>
         </Collapse>
       </Navbar>
-      <div style={{display:"flex"}}>
-        {cards.map(e => {
-          const { nome, cnpj, logomarca, } = e
+      <div  style={{ display: "flex", padding: "20px", flexDirection: "column" }}>
+        
+          {cards.map(e => {
+            const { nome, cnpj, logomarca, } = e
 
-          return <Card name={nome} cnpj={cnpj} image={logomarca} />
+            return <Card name={nome} cnpj={cnpj} image={logomarca} />
 
-        })}
+          })}
       </div>
     </>
   );

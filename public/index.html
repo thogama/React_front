@@ -55,6 +55,21 @@
   75%{transform: translateX(10px);}
 
 }
+@keyframes transitionIn{
+  from{
+    opacity: 0;
+    transform: translateX(20px)
+    ;
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px)
+
+  }
+}
+.onloadCard{
+  animation: transitionIn 0.5s;
+}
 
 .error {
   animation: error-inputed 0.5s ;
