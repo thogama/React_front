@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   Navbar,
@@ -19,8 +19,16 @@ import { TextField } from "../components/TextField";
 import { Formik, Form } from "formik";
 import { selectCards } from "../services/api";
 import Card from "../components/Card";
-import Sidebar from "./Sidebar";
+import { AuthContext } from "../contexts/auth";
+import { BsSearch } from "react-icons/bs"
 const Header = (props) => {
+
+
+  const { logout } = useContext(AuthContext)
+  const handleLogout = () => {
+    logout()
+  }
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -53,7 +61,7 @@ const Header = (props) => {
     <>
 
 
-      <Navbar style={{}} color="primary" dark expand="md">
+      <Navbar className="sticky-top" style={{}} color="primary" dark expand="md">
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }} className="headerRoot">
           <NavbarBrand style={{ marginRight: "0" }} className="d-lg-none">
             <img onClick={() => showMobilemenu()} style={{ maxHeight: "54px" }} src={realLogo} />
@@ -61,6 +69,7 @@ const Header = (props) => {
 
 
           <div className="hstack gap-2">
+            
             <Button
               color="success"
               size="lg"
@@ -73,6 +82,7 @@ const Header = (props) => {
                 <i className="bi bi-three-dots-vertical"></i>
               )}
             </Button>
+            
           </div>
           <div style={{ width: "100%" }}>
             <Formik
@@ -87,9 +97,7 @@ const Header = (props) => {
                   handlePesquisa(values.pesquisa)
 
                 }}  >
-
                   <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
-
                 </Form>
               )}
 
@@ -115,6 +123,11 @@ const Header = (props) => {
               <Link to="/about" className="nav-link">
                 About
               </Link>
+            </NavItem>
+            <NavItem>
+              <button style={{ padding: "10px" }} onClick={handleLogout}>
+                Deslogar
+              </button>
             </NavItem>
             <UncontrolledDropdown inNavbar nav>
               <DropdownToggle caret nav>
@@ -151,14 +164,16 @@ const Header = (props) => {
           </Dropdown>
         </Collapse>
       </Navbar>
-      <div  style={{ display: "flex", padding: "20px", flexDirection: "column" }}>
-        
+      <div style={{paddingTop:"10px"}} className="card container">
+        <div style={{ display: "flex", padding: "20px", flexDirection: "column"}}>
+
           {cards.map(e => {
             const { nome, cnpj, logomarca, } = e
 
             return <Card name={nome} cnpj={cnpj} image={logomarca} />
 
           })}
+        </div>
       </div>
     </>
   );

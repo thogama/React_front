@@ -27,9 +27,7 @@ export default function HomePage() {
             <FullLayout/>
             
             
-            <button style={{padding:"10px"}} onClick={handleLogout}>
-                Deslogar
-            </button>
+           
 
 
         </>
