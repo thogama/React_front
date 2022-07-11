@@ -5,10 +5,10 @@ import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
 export default function ProjectTables(props:any){
   
   let allData = props.cdata
-  console.log(allData)
+  
   return (
-    <div>
-      <Card>
+    <div style={{color:"#214ecc"}} className="onloadCard">
+      <Card >
         <CardBody>
           <CardTitle tag="h5">Resultado da Pesquisa</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
@@ -32,11 +32,11 @@ export default function ProjectTables(props:any){
                       />
                       <div className="ms-3">
                         <h6 className="mb-0">{tdata.nome}</h6>
-                        <span className="text-muted">{tdata.cnpj}</span>
+                        <span className="text-muted">{tdata.link_site}</span>
                       </div>
                     </div>
                   </td>
-                  <td>{tdata.project}</td>
+                  <td>tdata.especialidade</td>
                   <td>
                     {tdata.status === "pending" ? (
                       <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span>
@@ -46,8 +46,8 @@ export default function ProjectTables(props:any){
                       <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>
                     )}
                   </td>
-                  <td>{tdata.weeks}</td>
-                  <td>{tdata.budget}</td>
+                  <td>{tdata.rua}</td>
+                  <td>{tdata.numero}</td>
                 </tr>
               ))}
             </tbody>

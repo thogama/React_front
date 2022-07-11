@@ -38,14 +38,16 @@ const Header = (props) => {
 
 
   const [cards, setCards] = useState([])
-
+  const [renderCards,setrenderCards] = useState(true)
 
 
   async function handlePesquisa(param) {
     const cards = await selectCards(param)
-    
-    setCards(cards.data)
 
+    setCards(cards.data)
+    setrenderCards(false)
+    
+    
     
   }
 
@@ -158,11 +160,17 @@ const Header = (props) => {
           </Dropdown>
         </Collapse>
       </Navbar>
-      <div style={{ paddingTop: "10px" }} className="card ">
-        <div className="cardWrapper" style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ paddingTop: "10px" }} className="card container ">
+        {/* {<div  hidden={renderCards } id="cardWrapper" style={{ display: "flex", flexDirection: "column" }}>
             
-          <ProjectTables cdata={cards} />
-        </div>
+          <ProjectTables  cdata={cards} />
+        </div>} */}
+         {cards.map(e => {
+            const { nome, cnpj, logomarca, } = e
+
+            return <Card name={nome} cnpj={cnpj} image={logomarca} />
+
+          })}
 
       </div>
     </>

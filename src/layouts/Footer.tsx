@@ -29,7 +29,7 @@ export default function Footer() {
 
                     <div id="home" style={{ paddingTop: "5px", display: "flex",flexDirection:"column",alignItems:"center" }}>
                         <BsSearch id="homeicon" width={"20px"} />
-                        <button id="homebutton" style={{ fontSize: "21px", padding: "5px", color: "black", borderTop: "5px solid rgb(41, 98, 255)" }} className="btn ">
+                        <button id="homebutton" style={{ fontSize: "15px", padding: "5px", color: "black", borderTop: "5px solid rgb(41, 98, 255)" }} className="btn ">
                             Busca
 
                         </button>
