@@ -12,6 +12,7 @@ import {
   DropdownItem,
   Dropdown,
   Button,
+  Table,
 } from "reactstrap";
 import realLogo from "../assets2/logo-limpa.png"
 import user1 from "../assets/images/users/user1.jpg";
@@ -21,6 +22,7 @@ import { selectCards } from "../services/api";
 import Card from "../components/Card";
 import { AuthContext } from "../contexts/auth";
 import { BsSearch } from "react-icons/bs"
+import ProjectTables from "../components/dashboard/ProjectTable";
 const Header = (props) => {
 
 
@@ -41,10 +43,10 @@ const Header = (props) => {
 
   async function handlePesquisa(param) {
     const cards = await selectCards(param)
-
+    
     setCards(cards.data)
 
-    console.log(cards.data)
+    
   }
 
 
@@ -69,7 +71,7 @@ const Header = (props) => {
 
 
           <div className="hstack gap-2">
-            
+
             <Button
               color="success"
               size="lg"
@@ -82,7 +84,7 @@ const Header = (props) => {
                 <i className="bi bi-three-dots-vertical"></i>
               )}
             </Button>
-            
+
           </div>
           <div style={{ width: "100%" }}>
             <Formik
@@ -114,16 +116,8 @@ const Header = (props) => {
 
         <Collapse navbar isOpen={isOpen}>
           <Nav className="me-auto" navbar>
-            <NavItem>
-              <Link to="/starter" className="nav-link">
-                Starter
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/about" className="nav-link">
-                About
-              </Link>
-            </NavItem>
+
+
             <NavItem>
               <button style={{ padding: "10px" }} onClick={handleLogout}>
                 Deslogar
@@ -164,16 +158,12 @@ const Header = (props) => {
           </Dropdown>
         </Collapse>
       </Navbar>
-      <div style={{paddingTop:"10px"}} className="card container">
-        <div style={{ display: "flex", padding: "20px", flexDirection: "column"}}>
-
-          {cards.map(e => {
-            const { nome, cnpj, logomarca, } = e
-
-            return <Card name={nome} cnpj={cnpj} image={logomarca} />
-
-          })}
+      <div style={{ paddingTop: "10px" }} className="card ">
+        <div className="cardWrapper" style={{ display: "flex", flexDirection: "column" }}>
+            
+          <ProjectTables cdata={cards} />
         </div>
+
       </div>
     </>
   );

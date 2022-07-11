@@ -6,13 +6,14 @@ import { AuthContext } from "../contexts/auth"
 import Card from "../components/Card"
 import Sidebar from "../layouts/Sidebar"
 import FullLayout from "../layouts/FullLayout"
+import ProjectTables from "../components/dashboard/ProjectTable"
 
 
 
 export default function HomePage() {
+ 
 
 
-   
 
 
     const { logout } = useContext(AuthContext)
@@ -22,12 +23,11 @@ export default function HomePage() {
 
     return (
         <>
+
+
+            <FullLayout />
             
 
-            <FullLayout/>
-            
-            
-           
 
 
         </>

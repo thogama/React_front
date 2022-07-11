@@ -18,14 +18,16 @@ export default function Card(props: any) {
 
                         <p style={{ fontSize: "15px", color: "#757e85" }}>{props.cnpj}</p>
                     </div>
-                    <div style={{color: "#fff",backgroundColor: "rgb(3 172 71)",borderColor: "#2962ff"}}
-                     className="btn btn-primary">
-                    Agendar
+                    <div style={{ color: "#fff", backgroundColor: "rgb(3 172 71)", borderColor: "#2962ff" }}
+                        className="btn btn-primary">
+                        Agendar
+                    </div>
+                    
+                    
+
+
                 </div>
-
-
             </div>
-        </div>
         </>
     )
 }
