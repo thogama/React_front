@@ -13,7 +13,6 @@ export default function Stats() {
     const [especialidades, setEspecialides] = useState()
     useEffect(() => {
         getStats().then((response) => {
-            console.log(response.data)
             setEstabelecimentos(response.data.estabelecimentos)
             setPacientes(response.data.pacientes)
             setProfissionais(response.data.profissionais)

@@ -13,16 +13,16 @@ export default function CardHelper() {
     return (
         <>
 
-            <div className="card" style={{ boxSizing: "border-box", padding: "24px", zoom: "1" }}>
+            <div className="card " style={{ boxSizing: "border-box", padding: "24px", zoom: "1" }}>
                 <p style={{ fontSize: "1.5rem", color: "#2962ff", paddingLeft: "10px" }} className="card-title">Como usar nossa plataforma?</p >
                 <div onClick={focusSearch} className="card-body" >
                     
-                    <div  style={{ display: "flex", alignItems: "center",flexDirection:"column" }}>
-                        <AiOutlineSearch  color="#2962ff" size={35} />
-                        <p className="card-text">Busque por um medico ou especialidade ou estabelecimento na barra de pesquisa</p>
+                    <div  style={{ display: "flex", alignItems: "center", }}>
+                        <AiOutlineSearch  color="#2962ff" size={"2rem"} />
+                        <p className="card-text">Busque por um medico ou especialidade ou estabelecimento no campo de pesquisa</p>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center",flexDirection:"column" }}>
-                        <AiOutlineCalendar color="#2962ff" size={35} />
+                    <div style={{ display: "flex", alignItems: "center",}}>
+                        <AiOutlineCalendar color="#2962ff" size={"2rem"} />
                         <p className="card-text">Marque um atendimento através do telefone ou nos endereços</p>
                     </div>
 
