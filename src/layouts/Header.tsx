@@ -57,8 +57,8 @@ const Header = () => {
         <div id="input_on_header" style={{display:"flex",position:"relative",left:15,width:"100%"}}>
         <AiOutlineSearch color="grey"  size={20}  />
           <form onSubmit={(e)=>handleSearch(e)}>
-          <input value={searchValuesFromThis} onChange={(e)=>{setSearchValuesFromThis(e.target.value)}} id="search_box"  placeholder="Busque atendimento" style={{border:"0",outline:"none",backgroundColor:"#f5f5f5",width:"100%"}}
-           className="border-0"/>
+          <input  value={searchValuesFromThis} onChange={(e)=>{setSearchValuesFromThis(e.target.value)}} id="search_box"  placeholder="Busque atendimento" style={{border:"0",outline:"none",backgroundColor:"#f5f5f5",width:"100%"}}
+           className="ant-input border-0"/>
            </form>
         </div>
       
