@@ -1,5 +1,8 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi"
+import { RiArrowDropDownLine } from "react-icons/ri"
+import { AiOutlineSearch } from "react-icons/ai"
+
 import {
   Navbar,
   Collapse,
@@ -14,7 +17,7 @@ import {
   Button,
   Table,
 } from "reactstrap";
-import realLogo from "../assets2/logo-limpa.png"
+import realLogo from "../assets2/logo-nome-lateral-white-circle.png"
 import user1 from "../assets/images/users/user1.jpg";
 import { TextField } from "../components/TextField";
 import { Formik, Form } from "formik";
@@ -23,14 +26,16 @@ import Card from "../components/Card";
 import { AuthContext } from "../contexts/auth";
 import { BsSearch } from "react-icons/bs"
 import ProjectTables from "../components/dashboard/ProjectTable";
+import CardHelper from "../views/Helper";
 const Header = (props) => {
 
 
-  const { logout } = useContext(AuthContext)
+  const { logout, user } = useContext(AuthContext)
   const handleLogout = () => {
     logout()
   }
-
+  console.log(user)
+  user.image = user1
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -38,7 +43,7 @@ const Header = (props) => {
 
 
   const [cards, setCards] = useState([])
-  const [renderCards,setrenderCards] = useState(true)
+  const [renderCards, setrenderCards] = useState(true)
 
 
   async function handlePesquisa(param) {
@@ -46,9 +51,10 @@ const Header = (props) => {
 
     setCards(cards.data)
     setrenderCards(false)
-    
-    
-    
+    console.log(cards)
+
+
+
   }
 
 
@@ -63,116 +69,48 @@ const Header = (props) => {
   };
   return (
     <>
-
-
-      <Navbar className="sticky-top" style={{}} color="primary" dark expand="md">
-        <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }} className="headerRoot">
-          <NavbarBrand style={{ marginRight: "0" }} className="d-lg-none">
-            <img onClick={() => showMobilemenu()} style={{ maxHeight: "54px" }} src={realLogo} />
-          </NavbarBrand>
-
-
-          <div className="hstack gap-2">
-
-            <Button
-              color="success"
-              size="lg"
-              style={{ padding: "1px", height: "48px", border: "0", backgroundColor: "#214ecc" }}
-              onClick={Handletoggle}
-            >
-              {isOpen ? (
-                <i className="bi bi-x"></i>
-              ) : (
-                <i className="bi bi-three-dots-vertical"></i>
-              )}
-            </Button>
-
-          </div>
-          <div style={{ width: "100%" }}>
-            <Formik
-              initialValues={{}}
-              onSubmit={() => { }}
-            >
-              {({ errors, values }) => (
-
-                <Form onSubmit={(e) => {
-                  e.preventDefault()
-
-                  handlePesquisa(values.pesquisa)
-
-                }}  >
-                  <TextField errorsOn={false} placeHolder={"Ache um atendimento"} type="text" name="pesquisa" label={""} />
-                </Form>
-              )}
-
-            </Formik>
-          </div>
-
-
-
+      <div style={{
+        boxShadow: "0 0 4px rgb(0 0 0 / 28%)",
+        backgroundColor:"#f5f5f5",
+        
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "no-wrap",
+        alignItems: "center",
+        justifyContent: "space-between",
+        lineHeight: "1",
+        padding: "0 30px",
+        height: "72px",
+        top:0,
+        width:"100%",
+        position: "fixed",
+        zIndex: 10,
+        color: "#333333",
+        padding: "0 20px"
+      }}>
+        <div>
+          <GiHamburgerMenu color="#2962ff " style={{ fontSize: "20px" }} />
 
         </div>
+        <div id="input_on_header" style={{display:"flex",position:"relative",left:15,width:"100%"}}>
+        <AiOutlineSearch color="grey"  size={20}  />
 
-
-
-
-        <Collapse navbar isOpen={isOpen}>
-          <Nav className="me-auto" navbar>
-
-
-            <NavItem>
-              <button style={{ padding: "10px" }} onClick={handleLogout}>
-                Deslogar
-              </button>
-            </NavItem>
-            <UncontrolledDropdown inNavbar nav>
-              <DropdownToggle caret nav>
-                DD Menu
-              </DropdownToggle>
-              <DropdownMenu end>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-
-          </Nav>
-
-          <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-            <DropdownToggle color="primary">
-              <img
-                src={user1}
-                alt="profile"
-                className="rounded-circle"
-                width="30"
-              ></img>
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Info</DropdownItem>
-              <DropdownItem>My Account</DropdownItem>
-              <DropdownItem>Edit Profile</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>My Balance</DropdownItem>
-              <DropdownItem>Inbox</DropdownItem>
-              <DropdownItem>Logout</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </Collapse>
-      </Navbar>
-      <div style={{ paddingTop: "10px" }} className="card container ">
-        {/* {<div  hidden={renderCards } id="cardWrapper" style={{ display: "flex", flexDirection: "column" }}>
+          <input id="search_box"  placeholder="Busque atendimento" style={{border:"0",outline:"none",backgroundColor:"#f5f5f5",width:"100%"}}
+           className="border-0"/>
             
-          <ProjectTables  cdata={cards} />
-        </div>} */}
-         {cards.map(e => {
-            const { nome, cnpj, logomarca, } = e
+        </div>
+      
+      <RiArrowDropDownLine color="#2962ff" size={50} style={{ fontSize: "35px",marginLeft:"0.5rem" }} />
 
-            return <Card name={nome} cnpj={cnpj} image={logomarca} />
+      <img style={{ display: "block", objectFit: "cover", width: "2.5rem", borderRadius: "100%",border:"1px solid #2962ff ",padding:"1px" }} src={user.image} />
 
-          })}
 
-      </div>
+
+
+
+    </div>
+
+
     </>
   );
 

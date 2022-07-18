@@ -4,7 +4,7 @@ export default function Card(props: any) {
             <div className="onloadCard">
                 <div style={{
                     borderRadius: "5px",
-                    border: "2px inset #2962ff",
+                    border: "3px inset #2962ff",
                     display: "flex", alignItems: "center", padding: "10px", marginBottom: "15px",
                 }}>
 

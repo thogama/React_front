@@ -1,4 +1,5 @@
 import axios from "axios"
+import AppRoutes from "../routes/Router"
 
 export const api = axios.create({
     baseURL: "https://backend-orcilink.herokuapp.com/"
@@ -26,8 +27,14 @@ export const createPaciente = async (nome: string,
     })
 }
 
-export const selectCards = async (parametro:string)=>{
+export const selectCards = async (parametro: string) => {
     let path = "/pesquisa/" + parametro
-    
+
     return api.get(path)
 }
+
+export const getStats = async ()=>{
+    
+    return api.post("stats")
+}
+     
