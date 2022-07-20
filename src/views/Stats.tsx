@@ -27,7 +27,7 @@ export default function Stats() {
     return (
         <>
             
-                <div id="single_card" className="  card col-5" style={{ boxSizing: "border-box", padding: "24px", zoom: "1" }}>
+                <div className= "single_card  card col-5" style={{marginTop:"1rem", boxSizing: "border-box", padding: "24px", zoom: "1" }}>
                     <p style={{ fontSize: "1.5rem", color: "#2962ff",paddingLeft:"10px" }} className="card-title">Conheça a Orcilink</p >
 
                     <div className="row card-body" >

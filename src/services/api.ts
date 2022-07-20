@@ -2,8 +2,8 @@ import axios from "axios"
 import AppRoutes from "../routes/Router"
 
 export const api = axios.create({
-    baseURL: "https://backend-orcilink.herokuapp.com/"
-    //baseURL:"http://localhost:3333"
+    //baseURL: "https://backend-orcilink.herokuapp.com/"
+    baseURL:"http://localhost:3333"
 })
 
 export const createSession = async (email: string, password: string) => {
