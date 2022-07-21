@@ -48,8 +48,8 @@ export default function CardPesquisa() {
 
                         return <CardPesquisado source={element} />
                     })} */}
-                    <div className="col-sm-3" >
-                        <p className="fs-5">Mais procurados</p>
+                    <div className="col-sm-2" >
+                        <p className="text-center fs-5  ">Mais procurados</p>
                         <hr />
 
                         <div className="m-1 badge bg-primary">Dentista</div>
@@ -58,9 +58,14 @@ export default function CardPesquisa() {
                         <div className="m-1 badge bg-primary">Ginecologista</div>
                         <div className="m-1 badge bg-primary">Nutricionista</div>
                         <div className="m-1 badge bg-primary">Otorrino</div>
+                        <hr />
                     </div>
-                    <div style={{ border: "1px solid red" }} className="col-sm-9">
-                        teste
+                    <div style={{ maxHeight: "400px" }} className="list-group  overflow-auto col-sm-10">
+
+                        {data.map((element) => {
+
+                            return <li className="list-group-item border-0"> <CardPesquisado source={element} /></li>
+                        })}
                     </div>
 
 
