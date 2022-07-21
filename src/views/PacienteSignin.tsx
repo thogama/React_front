@@ -92,7 +92,7 @@ function Sigin() {
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "30px" }}>
                         <img style={{ maxWidth: "50%" }} className="img-fluid" src={logo} alt="logo" />
 
-                        <h1 style={{ paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie sua Cunta</h1>
+                        <h1 style={{ paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie sua Conta</h1>
                     </div>
                     <hr />
                     <Formik

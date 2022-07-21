@@ -33,6 +33,7 @@ const FullLayout = () => {
 
           </Container>
           {/******Footer*******/}
+          
         </div>
       </div>
     </main>

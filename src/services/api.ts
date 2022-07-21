@@ -17,7 +17,7 @@ export const createPaciente = async (nome: string,
     estado: string, hipertensao: boolean, diabetes: boolean,
     fuma: boolean, alergia: boolean, bebida_alcoolica: boolean,
     medicamento: string, senha: string) => {
-    return api.post("/paciente", {
+    return api.post("/paciente/signin", {
         nome: nome, cpf: cpf, planoSaude: plano,
         sexo: sexo, email: email, rua: rua, numero: numero,
         municipio: municipio, bairro: bairro, cep: cep, estado: estado,
@@ -25,6 +25,10 @@ export const createPaciente = async (nome: string,
         alergia: alergia, bebidaAlcoolica: bebida_alcoolica,
         medicamentoUso: medicamento, senha: senha
     })
+}
+
+export const createEstabelecimento = async()=>{
+    return api.post("/estabelecimento/signin")
 }
 
 export const selectCards = async (parametro: string) => {
