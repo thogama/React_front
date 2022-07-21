@@ -41,11 +41,30 @@ export default function CardPesquisa() {
         <>
             <div hidden id="search_results" className="single_card card col-12" style={{ boxSizing: "border-box", padding: "24px", zoom: "1" }}>
                 <p style={{ fontSize: "1.5rem", color: "rgb(41, 98, 255)", paddingLeft: "10px" }} className="card-title">Resultado da pesquisa: <span style={{ color: "green" }}>{searchValue}</span></p >
-                <div className="row card-body">
-                    {data.map((element) => {
+                <div className=" row card-body">
+
+
+                    {/* {data.map((element) => {
 
                         return <CardPesquisado source={element} />
-                    })}
+                    })} */}
+                    <div className="col-sm-3" >
+                        <p className="fs-5">Mais procurados</p>
+                        <hr />
+
+                        <div className="m-1 badge bg-primary">Dentista</div>
+                        <div className="m-1 badge bg-primary">Clínico Geral</div>
+                        <div className="m-1 badge bg-primary">Cardiologista</div>
+                        <div className="m-1 badge bg-primary">Ginecologista</div>
+                        <div className="m-1 badge bg-primary">Nutricionista</div>
+                        <div className="m-1 badge bg-primary">Otorrino</div>
+                    </div>
+                    <div style={{ border: "1px solid red" }} className="col-sm-9">
+                        teste
+                    </div>
+
+
+
                 </div>
 
             </div>

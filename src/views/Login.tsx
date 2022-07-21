@@ -114,7 +114,8 @@ function Login() {
                                     border:"none",
                                     backgroundColor: "#004afa",
                                     borderRadius: "5%",
-                                    padding:"9px 20px"
+                                    padding:"9px 20px",
+                                    marginTop:"13px"
                                 }} type="submit">
                                     Entrar
                                 </button>
@@ -129,7 +130,7 @@ function Login() {
                     </Formik>
 
 
-                    <a style={{ textDecoration: "none", display: "flex", justifyContent: "center", marginTop: "10px" }} href="/signin">Criar Conta</a>
+                    <a style={{ textDecoration: "none", display: "flex", justifyContent: "center", marginTop: "10px" }} href="/paciente/signin">Criar Conta</a>
                 </div>
             </div>
         </>

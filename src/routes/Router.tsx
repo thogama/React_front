@@ -4,8 +4,8 @@ import HomePage from "../views/HomePage"
 
 import { BrowserRouter,Navigate,Route,Routes} from "react-router-dom"
 import {AuthProvider,AuthContext} from "../contexts/auth"
-import Sigin from "../views/Sigin"
-
+import PacienteSignin from "../views/PacienteSignin"
+import EstabelecimentoSignin from "../views/EstabelecimentoSignin"
 
 
 export default function AppRoutes(){
@@ -31,10 +31,13 @@ export default function AppRoutes(){
           <AuthProvider>
         
             <Routes>
-                <Route element = {<Navigate to="/login"/>} path = "/" />
-                <Route element = {<LoginView/>} path = '/login'/>
+                
+                <Route element = {<LoginView/>} path = '/paciente/login'/>
+                <Route element = {<LoginView/>} path = "/estabelecimento/login"/>
                 <Route element = {<Private><HomePage/></Private>} path = '/home'/>
-                <Route element = {<Sigin/>} path = '/signin'/>
+                <Route element = {<PacienteSignin/>} path = '/paciente/signin'/>
+                <Route element = {<EstabelecimentoSignin/>} path = '/estabelecimento/signin'/>
+
             </Routes>
           </AuthProvider>
         
