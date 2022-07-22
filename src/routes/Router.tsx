@@ -6,6 +6,7 @@ import { BrowserRouter,Navigate,Route,Routes} from "react-router-dom"
 import {AuthProvider,AuthContext} from "../contexts/auth"
 import PacienteSignin from "../views/PacienteSignin"
 import EstabelecimentoSignin from "../views/EstabelecimentoSignin"
+import Profile from "../views/Profile"
 
 
 export default function AppRoutes(){
@@ -35,6 +36,7 @@ export default function AppRoutes(){
                 <Route element = {<LoginView/>} path = '/paciente/login'/>
                 <Route element = {<LoginView/>} path = "/estabelecimento/login"/>
                 <Route element = {<Private><HomePage/></Private>} path = '/home'/>
+                <Route element = {<Private><Profile/></Private>} path = '/profile'/>
                 <Route element = {<PacienteSignin/>} path = '/paciente/signin'/>
                 <Route element = {<EstabelecimentoSignin/>} path = '/estabelecimento/signin'/>
 

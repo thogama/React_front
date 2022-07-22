@@ -5,51 +5,44 @@ import { TextField } from "../components/TextField"
 import { Formik, Form } from "formik"
 import logo from "../assets2/logo-limpa.png"
 import { BsPencil } from "react-icons/bs"
-
+import * as Yup from "yup"
+import { GiConsoleController } from "react-icons/gi"
 
 function Sigin() {
 
+    //yup schema//
+    const mySchema = Yup.object({
+        nome: Yup.string()
+            .required("É necessário ter um nome"),
+        senha: Yup.string()
+            .required("É necessário digitar uma senha!")
+            .min(6, "Senha muito curta!"),
+        cnpj: Yup.string()
+            .required("E necessário ter um CNPJ")
+            .min(14, "CNPJ inválido"),
+        email: Yup.string()
+            .required("É necessário ter um email")
+            .email("Email inválido"),
+        senha2: Yup.string()
+            .test('passwords-match', 'A senha deve ser repetida', function (value) {
+                return this.parent.senha === value
+            })
+    })
+    //
 
 
 
     const tenhoconta = useNavigate()
 
 
-    //States//
-    const [nome, setNome] = useState("")
-    const [cnpj, setCpf] = useState("")
-    const [senha, setSenha] = useState("")
-    const [plano_saude, setPlano] = useState("")
-    const [email, setEmail] = useState("")
-    const [rua, setRua] = useState("")
-    const [numero, setNumero] = useState("")
-    const [bairro, setBairro] = useState("")
-    const [cep, setCep] = useState("")
-    const [municipio, setMunicipio] = useState("")
-    const [estado, setEstado] = useState("")
-    const [complemento, setComplemento] = useState("")
-
-    //States//
 
 
-    const disable = () => {
-        const campo = document.getElementById("disable_me")
-        if (!campo?.hasAttribute("disabled")) {
-            campo?.setAttribute("value", "")
+    const handleCriarConta = (values: any) => {
+        console.log(values)
+        createEstabelecimento(values.nome, values.cnpj, values.logomarca,
+            values.rua, values.numero, values.bairro,values.municipio, values.estado,
+            values.link_site, values.telefone)
 
-            campo?.setAttribute("disabled", "true")
-        }
-        else {
-
-            campo?.removeAttribute("disabled")
-
-        }
-    }
-
-    const handleCriarConta = () => {
-
-
-        createEstabelecimento()
     }
 
 
@@ -68,16 +61,16 @@ function Sigin() {
                 flexWrap: "wrap", alignItems: "center", justifyContent: "center",
                 margin: " 0 auto"
             }}>
-                <div id="login-content" style={{
-                    maxWidth: "420px", width: "94%"
-                    , margin: "0 auto", backgroundColor: "#ffffff",
+                <div className="border" id="login-content" style={{
+                    maxWidth: "65%"
+                    , margin: "0 15%", backgroundColor: "#ffffff",
                     padding: "35px 35px  10px",
                     borderRadius: "8px",
                     boxShadow: "0 0 2px rgb(0 0 0 / 35%)",
                     fontSize: "14px"
                 }}>
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "30px" }}>
-                        <img style={{ maxWidth: "50%" }} className="img-fluid" src={logo} alt="logo" />
+                        <img className="img-fluid col-sm-3" src={logo} alt="logo" />
 
                         <h1 style={{ paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie a conta da sua organização</h1>
                     </div>
@@ -85,23 +78,34 @@ function Sigin() {
                     <Formik
                         initialValues={{}}
                         onSubmit={() => { }}
+                        validationSchema={mySchema}
 
                     >
-                        {({ errors, values }) => (
+                        {({ values, isValid }) => (
 
-                            <Form onSubmit={() => { }}  >
+                            <Form onSubmit={(e) => {
+                                e.preventDefault()
+                                handleCriarConta(values)
 
-                                <div className="p-2" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o nome da organização"} type="text" name="nome" label={"Nome"} />
+                            }}  >
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o CNPJ da organização"} type="text" name="cnpf" label={"CNPJ"} />
+                                <div className="row p-2" style={{}}>
+                                    <div className="col-sm-6 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o nome da organização"} type="text" name="nome" label={"Nome"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"CNPJ com apenas números"} type="text" name="cnpj" label={"CNPJ"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o email da organização"} type="text" name="email" label={"Email"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Confirme a senha"} type="password" name="senha2" label={"Confirme a senha"} />
+
+                                    </div>
+
+
 
 
                                 </div>
@@ -114,23 +118,59 @@ function Sigin() {
                                         color: "rgb(119, 119, 119)"
                                     }}>Localização</h5>
                                 <hr />
-                                <div className="p-2">
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome da rua"} type="text" name="rua" label={"Rua"} />
+                                <div className="row p-2">
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome da rua"} type="text" name="rua" label={"Rua"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Número"} type="text" name="numero" label={"Numero"} />
+                                    </div>
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Número"} type="text" name="numero" label={"Numero"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"} />
+                                    </div>
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"} />
-
+                                    </div>
                                     <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Complemento"} type="text" name="complemento" label={"Complemento"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o  CEP"} type="text" name="CEP" label={"CEP"} />
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o município"} type="text" name="municipio" label={"Município"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o município"} type="text" name="município" label={"Município"} />
+                                    </div>
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"} />
 
-                                    
+                                    </div>
 
+                                    <div className="col-sm-4">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o  CEP"} type="text" name="CEP" label={"CEP"} />
+
+                                    </div>
+
+                                </div>
+
+                                <h5
+                                    style={{
+                                        marginBottom: "30px",
+                                        marginTop: "30px", display: "flex",
+                                        justifyContent: "center", fontWeight: 400,
+                                        fontSize: "20px",
+                                        color: "rgb(119, 119, 119)"
+                                    }}>Contatos</h5>
+                                <hr />
+                                <div style={{marginBottom:"10px"}} className="row p-2">
+                                    <div className="col-sm-6">
+                                        <TextField icon={<BsPencil size={"1rem"}
+                                            color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }}
+                                        />} placeHolder={"Telefone"} type="text" name="telefone" />
+
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <TextField icon={<BsPencil size={"1rem"}
+                                            color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }}
+                                        />} placeHolder={"Site"} type="text" name="link_site" />
+
+                                    </div>
                                 </div>
 
 
@@ -139,32 +179,36 @@ function Sigin() {
 
 
 
-
+                                <div className="d-flex justify-content-center">
+                                    <button disabled={!isValid} type="submit" style={{
+                                        maxWidth: "fit-content",
+                                        cursor: "pointer",
+                                        backgroundColor: "#214ecc"
+                                    }} className="btn text-light hover-overlay" >
+                                        Cadastrar
+                                    </button >
+                                </div>
                             </Form>
                         )}
 
                     </Formik>
 
 
-                    
-                    
-
-
-                    
-                    <div className="d-flex justify-content-center">
-                        <button type="button" onClick={() => handleCriarConta()} style={{
-                            maxWidth: "fit-content",
-                            cursor: "pointer",
-                            backgroundColor:"#214ecc"
-                        }} className="btn text-light hover-overlay" >
-                            Cadastrar
-                        </button >
-                    </div>
 
 
 
 
-                    <a style={{cursor:"pointer", display: "flex", justifyContent: "center", marginTop: "15px", textDecoration: "none" }} onClick={() => tenhoconta("../login")} className="">
+
+
+
+
+
+
+                    <a style={{
+                        cursor: "pointer", display: "flex",
+                        justifyContent: "center", marginTop: "15px",
+                        textDecoration: "none"
+                    }} href="/estabelecimento/login" >
                         Já possui conta?
 
                     </a>

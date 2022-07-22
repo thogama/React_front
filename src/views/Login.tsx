@@ -74,14 +74,16 @@ function Login() {
                     </div>
 
                     <Formik
+                        
                         initialValues={initialValues}
                         onSubmit={() => { }}
                         validationSchema={mySchema}
+                        
                     >
-                        {({ errors, values }) => (
+                        {({ errors, values,isValid }) => (
 
-                            <Form style={{display:"flex",flexDirection:"column"}} onSubmit={(e) => {
-
+                            <Form  style={{display:"flex",flexDirection:"column"}} onSubmit={(e) => {
+                                console.log(errors)
                                 handleLogin(e, values.email, values.password, values.remember)
 
                             }}  >
@@ -101,13 +103,14 @@ function Login() {
                                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",cursor:"pointer" }}>
                                     <div className="form-check ">
                                         <input onChange={() => values.remember = !values.remember} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                        
                                         <label style={{cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
                                     </div>
                                     <a href="/" style={{ textDecoration: "none", color: "#004afa", marginLeft: "10px", fontSize: "15px" }}>Esqueceu a senha?</a>
-
+                                    
                                 </div>
-
-                                <button className="text-light  hover-overlay" style={{
+                               
+                                <button disabled={!isValid}  className="text-light  hover-overlay" style={{
                                     margin:"0 auto",
                                     cursor:"pointer",
                                     height:"auto",
@@ -126,6 +129,7 @@ function Login() {
 
                             </Form>
                         )}
+                        
 
                     </Formik>
 

@@ -1,9 +1,10 @@
 import axios from "axios"
+import { string } from "prop-types"
 import AppRoutes from "../routes/Router"
 
 export const api = axios.create({
-    //baseURL: "https://backend-orcilink.herokuapp.com/"
-    baseURL:"http://localhost:3333"
+    baseURL: "https://backend-orcilink.herokuapp.com/"
+    //baseURL:"http://localhost:3333"
 })
 
 export const createSession = async (email: string, password: string) => {
@@ -27,8 +28,14 @@ export const createPaciente = async (nome: string,
     })
 }
 
-export const createEstabelecimento = async()=>{
-    return api.post("/estabelecimento/signin")
+export const createEstabelecimento = async(nome:string,cnpj:string,logomarca:string,rua:string,
+    numero:number,bairro:string,municipio:string,estado:string,link_site:string,telefone:string)=>{
+    return api.post("/estabelecimento/signin",{
+        nome:nome,cnpj:cnpj,logomarca:logomarca,
+        rua:rua,numero:numero,bairro:bairro,
+        municipio:municipio,estado:estado,
+        linkSite:link_site,telefone:telefone
+    })
 }
 
 export const selectCards = async (parametro: string) => {
