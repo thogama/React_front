@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useRef } from "react"
 import { selectCards } from "../services/api"
 import SearchContext from "../contexts/pesquisa"
 import { element } from "prop-types"
-import CardPesquisado from "../components/CardPesquisado"
+import CardPesquisado from "./CardPesquisado"
 export default function CardPesquisa() {
     const { searchValue } = useContext(SearchContext)
     const [data, setData] = useState([])

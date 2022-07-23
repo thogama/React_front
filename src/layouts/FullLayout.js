@@ -2,9 +2,9 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
-import CardsPesquisa from "../views/CardPesquisa";
-import CardHelper from "../views/Helper";
-import Stats from "../views/Stats";
+import CardsPesquisa from "../components/CardPesquisa";
+import CardHelper from "../components/Helper";
+import Stats from "../components/Stats";
 const FullLayout = () => {
   return (
     <main>

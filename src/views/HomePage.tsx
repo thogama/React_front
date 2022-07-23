@@ -1,5 +1,4 @@
 import Header from "../layouts/Header"
-import logo from "../assets2/logo-limpa.png"
 import { selectCards } from "../services/api"
 import { useState, useContext } from "react"
 import { AuthContext } from "../contexts/auth"

@@ -4,7 +4,7 @@ import { RiArrowDropDownLine } from "react-icons/ri"
 import { AiOutlineSearch } from "react-icons/ai"
 import SearchContext from "../contexts/pesquisa";
 
-import user1 from "../assets/images/users/user1.jpg";
+import user1 from "../assets/images/user1.png";
 
 import { AuthContext } from "../contexts/auth";
 

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { createPaciente } from "../services/api"
 import { TextField } from "../components/TextField"
 import { Formik, Form } from "formik"
-import logo from "../assets2/logo-limpa.png"
+import logo from "../assets/images/logo-limpa.png"
 import { BsPencil } from "react-icons/bs"
 
 
@@ -196,7 +196,7 @@ function Sigin() {
                                 <option value="1">Sim</option>
                                 <option value="0">Não</option>
                             </select>
-
+ 
                         </div>
 
                         <div className="col-5" style={{ marginTop: "15px" }}>

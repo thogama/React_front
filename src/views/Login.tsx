@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react"
-import Logo from "../assets2/logo-limpa.png"
+import Logo from "../assets/images/logo-limpa.png"
 import { Formik, Form, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { TextField } from "../components/TextField.js"
