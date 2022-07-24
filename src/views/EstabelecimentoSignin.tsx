@@ -6,10 +6,14 @@ import { Formik, Form } from "formik"
 import logo from "../assets/images/logo-limpa.png"
 import { BsPencil } from "react-icons/bs"
 import * as Yup from "yup"
-import { GiConsoleController } from "react-icons/gi"
+
+
 
 function Sigin() {
 
+
+    const [file, setFile] = useState(null)
+   
     //yup schema//
     const mySchema = Yup.object({
         nome: Yup.string()
@@ -32,18 +36,11 @@ function Sigin() {
 
 
 
-    const tenhoconta = useNavigate()
 
 
 
 
-    const handleCriarConta = (values: any) => {
-        console.log(values)
-        createEstabelecimento(values.nome, values.cnpj, values.logomarca,
-            values.rua, values.numero, values.bairro,values.municipio, values.estado,
-            values.link_site, values.telefone)
-
-    }
+    
 
 
 
@@ -85,7 +82,8 @@ function Sigin() {
 
                             <Form onSubmit={(e) => {
                                 e.preventDefault()
-                                handleCriarConta(values)
+                                //handleCriarConta(values)
+                                createEstabelecimento(e,file,values)
 
 
                             }}  >
@@ -97,14 +95,23 @@ function Sigin() {
 
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o email da organização"} type="text" name="email" label={"Email"} />
 
+
                                     </div>
                                     <div className="col-sm-6">
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
 
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Confirme a senha"} type="password" name="senha2" label={"Confirme a senha"} />
 
-                                    </div>
+                                        <input onChange={(event) => {
+                                            const file = event.target.files[0]
+                                            setFile(file)
+                                        }} type="file" name="logomarca" />
 
+
+
+
+
+                                    </div>
 
 
 
@@ -158,7 +165,7 @@ function Sigin() {
                                         color: "rgb(119, 119, 119)"
                                     }}>Contatos</h5>
                                 <hr />
-                                <div style={{marginBottom:"10px"}} className="row p-2">
+                                <div style={{ marginBottom: "10px" }} className="row p-2">
                                     <div className="col-sm-6">
                                         <TextField icon={<BsPencil size={"1rem"}
                                             color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }}
@@ -180,7 +187,7 @@ function Sigin() {
 
 
                                 <div className="d-flex justify-content-center">
-                                    <button disabled={!isValid} type="submit" style={{
+                                    <button type="submit" style={{
                                         maxWidth: "fit-content",
                                         cursor: "pointer",
                                         backgroundColor: "#214ecc"
