@@ -2,10 +2,38 @@ import axios from "axios"
 import { string } from "prop-types"
 import AppRoutes from "../routes/Router"
 
+
 export const api = axios.create({
-    baseURL: "https://backend-orcilink.herokuapp.com/"
-    //baseURL:"http://localhost:3333"
+    //baseURL:https://backend-orcilink.herokuapp.com/
+    baseURL: "http://localhost:3333"
 })
+
+export const createEstabelecimento = (e: any, file: any, values: any) => {
+    const data = new FormData()
+    data.set("logomarca", file)
+    
+    
+    data.set("email",values.email)
+    data.set("senha",values.senha)
+    data.set("nome",values.nome)
+    data.set("bairro",values.bairro) 
+    data.set("cnpj",values.cnpj)
+    data.set("rua",values.rua)
+    data.set("numero",values.numero)
+    data.set("bairro",values.bairro)
+    data.set("municipio",values.municipio)
+    data.set("estado",values.estado)
+    data.set("linkSite",values.link_site)
+    data.set("telefone",values.telefone)
+    console.log(data)
+    //const baseURL = "https://backend-orcilink.herokuapp.com/"
+    const baseURL = "http://localhost:3333/estabelecimento/signin"
+
+      axios.post(baseURL,data,).then((response)=>{
+          console.log(response)
+      })
+
+}
 
 export const createSession = async (email: string, password: string) => {
     return api.post("/paciente/login", { email: email, senha: password })
@@ -28,15 +56,7 @@ export const createPaciente = async (nome: string,
     })
 }
 
-export const createEstabelecimento = async(nome:string,cnpj:string,logomarca:string,rua:string,
-    numero:number,bairro:string,municipio:string,estado:string,link_site:string,telefone:string)=>{
-    return api.post("/estabelecimento/signin",{
-        nome:nome,cnpj:cnpj,logomarca:logomarca,
-        rua:rua,numero:numero,bairro:bairro,
-        municipio:municipio,estado:estado,
-        linkSite:link_site,telefone:telefone
-    })
-}
+
 
 export const selectCards = async (parametro: string) => {
     let path = "/pesquisa/" + parametro
@@ -44,8 +64,8 @@ export const selectCards = async (parametro: string) => {
     return api.get(path)
 }
 
-export const getStats = async ()=>{
-    
+export const getStats = async () => {
+
     return api.post("stats")
 }
-     
+
