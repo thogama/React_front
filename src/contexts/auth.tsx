@@ -48,10 +48,11 @@ export const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({ child
             const loggedUser = response.data.user
             const token = response.data.token
             const nome = response.data.nome
-            
+            const foto = response.data.foto
             localStorage.setItem("user", JSON.stringify(loggedUser))
             localStorage.setItem("token", token)
             localStorage.setItem("nome", nome)
+            localStorage.setItem("foto",foto)
 
             api.defaults.headers.common.Authorization = `Bearer ${token}`
             
@@ -73,6 +74,7 @@ export const AuthProvider: React.FunctionComponent<AuthProviderProps> = ({ child
         localStorage.removeItem("user")
         localStorage.removeItem("token")
         localStorage.removeItem("nome")
+        localStorage.removeItem("foto")
 
         api.defaults.headers.common["Authorization"] = "";
 
