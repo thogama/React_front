@@ -16,9 +16,9 @@ function Sigin() {
 
 
     //States//
-   
+
     const [sexo, setSexo] = useState("")
-    
+
     const [hipertensao, setHipertensao] = useState("")
     const [diabetes, setDiabetes] = useState("")
     const [fuma, setFuma] = useState("")
@@ -43,10 +43,10 @@ function Sigin() {
         }
     }
 
-    const handleCriarConta = (e:any,values:any,file:any,selects:any) => {
+    const handleCriarConta = (e: any, values: any, file: any, selects: any) => {
 
-        
-        createPaciente(e,file,values,selects)
+
+        createPaciente(e, file, values, selects)
     }
 
 
@@ -65,16 +65,16 @@ function Sigin() {
                 flexWrap: "wrap", alignItems: "center", justifyContent: "center",
                 margin: " 0 auto"
             }}>
-                <div id="login-content" style={{
-                    maxWidth: "420px", width: "94%"
-                    , margin: "0 auto", backgroundColor: "#ffffff",
+                <div className="border" id="login-content" style={{
+                    maxWidth: "65%"
+                    , margin: "0 15%", backgroundColor: "#ffffff",
                     padding: "35px 35px  10px",
                     borderRadius: "8px",
                     boxShadow: "0 0 2px rgb(0 0 0 / 35%)",
                     fontSize: "14px"
                 }}>
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "30px" }}>
-                        <img style={{ maxWidth: "50%" }} className="img-fluid" src={logo} alt="logo" />
+                        <img className="img-fluid col-sm-3" src={logo} alt="logo" />
 
                         <h1 style={{ paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie sua Conta</h1>
                     </div>
@@ -88,25 +88,29 @@ function Sigin() {
 
                             <Form onSubmit={(e) => {
                                 e.preventDefault()
-                                    handleCriarConta(e,values,file,{hipertensao,diabetes,fuma,alergia,bebida_alcoolica,medicamento})
-                                
+                                handleCriarConta(e, values, file, { hipertensao, diabetes, fuma, alergia, bebida_alcoolica, medicamento })
+
                             }}  >
 
-                                <div className="p-2" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+                                <div className="row p-2" >
+                                    <div className="col-sm-6">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu nome"} type="text" name="nome" label={"Nome"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu nome"} type="text" name="nome" label={"Nome"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu CPF"} type="text" name="cpf" label={"CPF"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu CPF"} type="text" name="cpf" label={"CPF"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu email"} type="text" name="email" label={"Email"} />
+                                    </div>
+                                    <div className="col-sm-6">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"} />
+                                        <input className="form-control" onChange={(event) => {
+                                            const file = event.target.files[0]
+                                            setFile(file)
+                                        }} type="file" name="foto-perfil" />
+                                    </div>
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"} />
-                                    <input className="form-control" onChange={(event) => {
-                                        const file = event.target.files[0]
-                                        setFile(file)
-                                    }} type="file" name="foto-perfil" />
 
                                 </div>
                                 <h5
@@ -118,20 +122,38 @@ function Sigin() {
                                         color: "rgb(119, 119, 119)"
                                     }}>Endereço</h5>
                                 <hr />
-                                <div className="p-2">
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome da rua"} type="text" name="rua" label={"Rua"} />
+                                <div className="row p-2">
+                                    <div className="col-sm-4 ">
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Número"} type="text" name="numero" label={"Numero"} />
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome da rua"} type="text" name="rua" label={"Rua"} />
+                                    </div>
+                                    <div className="col-sm-4 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Número"} type="text" name="numero" label={"Numero"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"} />
+                                    </div>
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"} />
+                                    <div className="col-sm-4 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do bairro"} type="text" name="bairro" label={"Bairro"} />
 
+                                    </div>
                                     <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Complemento"} type="text" name="complemento" label={"Complemento"} />
+                                    <div className="col-sm-4 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu município"} type="text" name="municipio" label={"Município"} />
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu CEP"} type="text" name="CEP" label={"CEP"} />
+                                    </div>
 
-                                    <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu município"} type="text" name="municipio" label={"Município"} />
+                                    <div className="col-sm-4 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Nome do estado"} type="text" name="estado" label={"Estado"} />
+
+
+                                    </div>
+                                    <div className="col-sm-4 ">
+                                        <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite seu CEP"} type="text" name="CEP" label={"CEP"} />
+
+                                    </div>
+
+
+
 
                                     <div style={{ paddingBottom: "1rem" }} className="d-flex justify-content-center  form-switch">
 
@@ -211,7 +233,7 @@ function Sigin() {
                                 </div>
 
                                 <div className="d-flex justify-content-center">
-                                    <button type="submit"  style={{
+                                    <button type="submit" style={{
                                         maxWidth: "fit-content",
                                         cursor: "pointer",
                                         backgroundColor: "#214ecc"
