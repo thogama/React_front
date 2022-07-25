@@ -1,25 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { AiOutlineSearch } from "react-icons/ai"
 import SearchContext from "../contexts/pesquisa";
-
-import user1 from "../assets/images/user1.png";
-
+import dummy from "../assets/images/dummy.png"
 import { AuthContext } from "../contexts/auth";
+import * as bootstrap from "bootstrap"
 
 const Header = () => {
+  var dropdownElementList = [].slice.call(document.querySelectorAll('.dropdown-toggle'))
+  var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+    return new bootstrap.Dropdown(dropdownToggleEl)
+  })
 
   const { setSearchValue } = useContext(SearchContext)
 
   const [searchValuesFromThis, setSearchValuesFromThis] = useState(null)
-  const { logout, user } = useContext(AuthContext)
+  const { logout, user, all } = useContext(AuthContext)
   const handleLogout = () => {
     logout()
   }
 
-  user.image = user1
 
+  useEffect(() => {
+    console.log("info do user", all)
+  }, [all])
 
 
   function handleSearch(e: any) {
@@ -61,11 +66,31 @@ const Header = () => {
               className="ant-input border-0" />
           </form>
         </div>
+        <div style={{ alignItems: "center" }} className="d-flex ">
 
-        <RiArrowDropDownLine color="#2962ff" size={50} style={{ fontSize: "35px", marginLeft: "0.5rem" }} />
-        
-        <img style={{ display: "block", objectFit: "cover", width: "2.5rem", borderRadius: "100%", border: "1px solid #2962ff ", padding: "1px" }} src={user.image} />
+          <div className="dropdown">
+            <RiArrowDropDownLine id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              className=" dropdown-toggle" color="#2962ff"
+              size={50} style={{ cursor: "pointer", fontSize: "35px", marginLeft: "0.5rem" }} />
 
+            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><div onClick={handleLogout} className="dropdown-item">
+                Logout
+              </div></li>
+              <li><a className="dropdown-item" href="#">Another action</a></li>
+              <li><a className="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+
+          <img style={{
+            display: "block", objectFit: "cover",
+            width: "2.5rem", borderRadius: "100%", border: "1px solid #2962ff ",
+            padding: "1px"
+          }} src={localStorage.getItem("foto") || dummy} />
+
+
+        </div>
 
 
 
