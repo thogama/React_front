@@ -69,7 +69,7 @@ function Sigin() {
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "30px" }}>
                         <img className="img-fluid col-sm-3" src={logo} alt="logo" />
 
-                        <h1 style={{ paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie a conta da sua organização</h1>
+                        <h1 style={{textAlign:"center", paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie a conta da sua organização</h1>
                     </div>
                     <hr />
                     <Formik
@@ -88,7 +88,7 @@ function Sigin() {
 
                             }}  >
 
-                                <div className="row p-2" style={{}}>
+                                <div className="row p-2" >
                                     <div className="col-sm-6 ">
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite o nome da organização"} type="text" name="nome" label={"Nome"} />
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"CNPJ com apenas números"} type="text" name="cnpj" label={"CNPJ"} />
