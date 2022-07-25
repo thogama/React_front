@@ -102,7 +102,7 @@ function Sigin() {
 
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Confirme a senha"} type="password" name="senha2" label={"Confirme a senha"} />
 
-                                        <input onChange={(event) => {
+                                        <input id="form-file" className="form-control" onChange={(event) => {
                                             const file = event.target.files[0]
                                             setFile(file)
                                         }} type="file" name="logomarca" />
