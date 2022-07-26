@@ -2,9 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Container } from "reactstrap";
-import CardsPesquisa from "../components/CardPesquisa";
-import CardHelper from "../components/Helper";
-import Stats from "../components/Stats";
+
 const FullLayout = () => {
   return (
     <main>
@@ -25,12 +23,6 @@ const FullLayout = () => {
           {/********Middle Content**********/}
           <Container style={{backgroundColor:"#f2f2f2",marginTop:"4.5rem"}} className="p-4 wrapper" fluid>
             <Outlet />
-            <CardsPesquisa/>
-            <CardHelper/>
-            <Stats/>
-            
-           
-
           </Container>
           {/******Footer*******/}
           
