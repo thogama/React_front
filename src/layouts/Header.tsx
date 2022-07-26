@@ -76,10 +76,11 @@ const Header = () => {
 
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><div onClick={handleLogout} className="dropdown-item">
-                Logout
+                Sair
               </div></li>
-              <li><a className="dropdown-item" href="#">Another action</a></li>
-              <li><a className="dropdown-item" href="#">Something else here</a></li>
+              <li><a className="dropdown-item" href="profile">Meu Perfil</a></li>
+              <li><a className="dropdown-item" href="agenda">Minha Agenda</a></li>
+
             </ul>
           </div>
 
