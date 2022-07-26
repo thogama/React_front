@@ -52,9 +52,9 @@ function Login() {
 
             <div id="login-container" style={{
                 position: "relative", height: "100%",
-                 flex: "1 1", display: "flex", flexDirection: "row",
+                flex: "1 1", display: "flex", flexDirection: "row",
                 flexWrap: "wrap", alignItems: "center", justifyContent: "center",
-                margin:" 0 auto"
+                margin: " 0 auto"
             }}>
                 <div id="login-content" style={{
                     maxWidth: "420px", width: "94%"
@@ -74,51 +74,51 @@ function Login() {
                     </div>
 
                     <Formik
-                        
+
                         initialValues={initialValues}
                         onSubmit={() => { }}
                         validationSchema={mySchema}
-                        
-                    >
-                        {({ errors, values,isValid }) => (
 
-                            <Form  style={{display:"flex",flexDirection:"column"}} onSubmit={(e) => {
+                    >
+                        {({ errors, values, isValid }) => (
+
+                            <Form style={{ display: "flex", flexDirection: "column" }} onSubmit={(e) => {
                                 console.log(errors)
                                 handleLogin(e, values.email, values.password, values.remember)
 
                             }}  >
-                                
-                                 <div >
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                        
-                                        <TextField icon={<AiOutlineUser size={"1rem"}  style={{left:"5px",zIndex:2,position:"relative"}} className="form-text" />} placeHolder={"Digite seu email"} type="text" id="email" name="email" label={""} />
+
+                                <div >
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+                                        <TextField icon={<AiOutlineUser size={"1rem"} style={{ left: "5px", zIndex: 2, position: "relative" }} className="form-text" />} placeHolder={"Digite seu email"} type="text" id="email" name="email" label={""} />
 
                                     </div>
-                                    <div style={{display:"flex",alignItems:"center",justifyContent:"center"}}>
-                                        
-                                        <TextField icon={<AiOutlineLock size={"1rem"}  style={{left:"5px",zIndex:2,position:"relative"}} className="form-text" />}  placeHolder={"Digite sua senha"} type="password" id="passoword" name="password" label={""} />
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+                                        <TextField icon={<AiOutlineLock size={"1rem"} style={{ left: "5px", zIndex: 2, position: "relative" }} className="form-text" />} placeHolder={"Digite sua senha"} type="password" id="passoword" name="password" label={""} />
 
                                     </div>
-                                </div> 
-                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center",cursor:"pointer" }}>
+                                </div>
+                                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", cursor: "pointer" }}>
                                     <div className="form-check ">
                                         <input onChange={() => values.remember = !values.remember} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                                        
-                                        <label style={{cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
+
+                                        <label style={{ cursor: "pointer" }} className="form-check-label" htmlFor="flexSwitchCheckDefault">Lembrar senha</label>
                                     </div>
                                     <a href="/" style={{ textDecoration: "none", color: "#004afa", marginLeft: "10px", fontSize: "15px" }}>Esqueceu a senha?</a>
-                                    
+
                                 </div>
-                               
-                                <button disabled={!isValid}  className="text-light  hover-overlay" style={{
-                                    margin:"0 auto",
-                                    cursor:"pointer",
-                                    height:"auto",
-                                    border:"none",
+
+                                <button disabled={!isValid} className="text-light  hover-overlay" style={{
+                                    margin: "0 auto",
+                                    cursor: "pointer",
+                                    height: "auto",
+                                    border: "none",
                                     backgroundColor: "#004afa",
                                     borderRadius: "5%",
-                                    padding:"9px 20px",
-                                    marginTop:"13px"
+                                    padding: "9px 20px",
+                                    marginTop: "13px"
                                 }} type="submit">
                                     Entrar
                                 </button>
@@ -129,12 +129,16 @@ function Login() {
 
                             </Form>
                         )}
-                        
+
 
                     </Formik>
 
-
-                    <a style={{ textDecoration: "none", display: "flex", justifyContent: "center", marginTop: "10px" }} href="/paciente/signin">Criar Conta</a>
+                    <div className="d-flex justify-content-evenly">
+                        <a style={{ textDecoration: "none", display: "flex", justifyContent: "center", marginTop: "10px" }}
+                            href="/paciente/signin">Criar Conta : Paciente</a>
+                        <a style={{ color:"green", textDecoration: "none", display: "flex", justifyContent: "center", marginTop: "10px" }}
+                            href="/estabelecimento/signin">Criar Conta : Empresa</a>
+                    </div>
                 </div>
             </div>
         </>
