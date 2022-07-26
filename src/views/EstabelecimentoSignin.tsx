@@ -215,7 +215,7 @@ function Sigin() {
                         cursor: "pointer", display: "flex",
                         justifyContent: "center", marginTop: "15px",
                         textDecoration: "none"
-                    }} href="/estabelecimento/login" >
+                    }} href="/login" >
                         Já possui conta?
 
                     </a>
