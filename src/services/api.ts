@@ -2,8 +2,8 @@ import axios from "axios"
 
 
 export const api = axios.create({
-    //baseURL:https://backend-orcilink.herokuapp.com/
-    baseURL: "http://localhost:3333"
+    baseURL:"https://backend-orcilink.herokuapp.com"
+    //baseURL: "http://localhost:3333"
 })
 
 export const createEstabelecimento = (e: any, file: any, values: any) => {
@@ -22,8 +22,8 @@ export const createEstabelecimento = (e: any, file: any, values: any) => {
     data.set("linkSite",values.link_site)
     data.set("telefone",values.telefone)
     console.log(data)
-    //const baseURL = "https://backend-orcilink.herokuapp.com/"
-    const baseURL = "http://localhost:3333/estabelecimento/signin"
+    const baseURL = "https://backend-orcilink.herokuapp.com/"
+    //const baseURL = "http://localhost:3333/estabelecimento/signin"
 
       axios.post(baseURL,data,).then((response)=>{
           console.log(response)
@@ -62,8 +62,8 @@ export const createPaciente = async(e:any,file:any,values:any,selects:any)=>{
         data.set("municipio",values.municipio)
         data.set("estado",values.estado)
         console.log(data)
-        //const baseURL = "https://backend-orcilink.herokuapp.com/"
-        const baseURL = "http://localhost:3333/paciente/signin"
+        const baseURL = "https://backend-orcilink.herokuapp.com/"
+        //const baseURL = "http://localhost:3333/paciente/signin"
     
           axios.post(baseURL,data,).then((response)=>{
               console.log(response)
