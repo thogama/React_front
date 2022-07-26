@@ -4,7 +4,9 @@ import { useState, useContext } from "react"
 import { AuthContext } from "../contexts/auth"
 import Sidebar from "../layouts/Sidebar"
 import FullLayout from "../layouts/FullLayout"
-
+import CardsPesquisa from "../components/CardPesquisa";
+import CardHelper from "../components/Helper";
+import Stats from "../components/Stats";
 
 
 export default function HomePage() {
@@ -22,7 +24,10 @@ export default function HomePage() {
         <>
             
 
-             <FullLayout/>
+             
+             <CardsPesquisa/>
+            <CardHelper/>
+            <Stats/>
              
 
 
