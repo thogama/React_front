@@ -45,8 +45,8 @@ function Sigin() {
 
     const handleCriarConta = (e: any, values: any, file: any, selects: any) => {
 
-
-        createPaciente(e, file, values, selects)
+        e.preventDefault()
+        createPaciente(file, values, selects)
     }
 
 
