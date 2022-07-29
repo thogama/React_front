@@ -5,12 +5,29 @@ import { TextField } from "../components/TextField"
 import { Formik, Form } from "formik"
 import logo from "../assets/images/logo-limpa.png"
 import { BsPencil } from "react-icons/bs"
-
+import * as Yup from "yup"
 
 function Sigin() {
 
 
 
+    const mySchema = Yup.object({
+        nome: Yup.string()
+            .required("É necessário ter um nome"),
+        senha: Yup.string()
+            .required("É necessário digitar uma senha!")
+            .min(6, "Senha muito curta!"),
+        cnpj: Yup.string()
+            .required("E necessário ter um CPF")
+            .min(11, "CNPJ inválido"),
+        email: Yup.string()
+            .required("É necessário ter um email")
+            .email("Email inválido"),
+        senha2: Yup.string()
+            .test('passwords-match', 'A senha deve ser repetida', function (value) {
+                return this.parent.senha === value
+            })
+    })
 
     const tenhoconta = useNavigate()
 
@@ -82,7 +99,7 @@ function Sigin() {
                     <Formik
                         initialValues={{}}
                         onSubmit={() => { }}
-
+                        validationSchema={mySchema}
                     >
                         {({ errors, values }) => (
 
@@ -105,10 +122,13 @@ function Sigin() {
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite uma senha"} type="password" name="senha" label={"Senha"} />
 
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Digite novamente a senha"} type="password" name="senha2" label={"Confirme a senha"} />
+                                        {file ? <div style={{maxWidth:"fit-content"}} className="form-control ">
+                                            <img style={{ maxWidth: "5rem" }} className="img-fluid" src={URL.createObjectURL(file)} alt="Imagem" /></div> : ""}
                                         <input className="form-control" onChange={(event) => {
                                             const file = event.target.files[0]
                                             setFile(file)
                                         }} type="file" name="foto-perfil" />
+
                                     </div>
 
 
