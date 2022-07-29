@@ -1,19 +1,40 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { createEstabelecimento } from "../services/api"
+import { useState, useEffect, useContext } from "react"
+import { createEstabelecimento, createProfissional } from "../services/api"
 import { TextField } from "../components/TextField"
 import { Formik, Form } from "formik"
 import logo from "../assets/images/logo-limpa.png"
 import { BsPencil } from "react-icons/bs"
 import * as Yup from "yup"
-
+import { AiOutlinePlusSquare } from "react-icons/ai"
+import * as bootstrap from "bootstrap"
+import AdicionarProfis from "../components/AdicionarProfis"
 
 
 function Sigin() {
 
 
+    const profissionaisDataAserAdd:
+        Array<{ values: { nome: string, senha: string, crmCro: string, especialidadeId: string }, file: File }> = []
+
+
+    const [index, setIndex] = useState([])
+
+
+
+
+
+    useEffect(() => {
+        //DROPDOWN init
+        var dropdownElementList = [].slice.call(document.querySelectorAll('.myModal'))
+        var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
+            return new bootstrap.Dropdown(dropdownToggleEl)
+        })
+
+
+    }, [])
+
+
     const [file, setFile] = useState(null)
-   
     //yup schema//
     const mySchema = Yup.object({
         nome: Yup.string()
@@ -32,15 +53,8 @@ function Sigin() {
                 return this.parent.senha === value
             })
     })
-    //
 
 
-
-
-
-
-
-    
 
 
 
@@ -49,7 +63,6 @@ function Sigin() {
 
     return (
         <>
-
 
 
             <div id="login-container" style={{
@@ -69,7 +82,7 @@ function Sigin() {
                     <div style={{ display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "30px" }}>
                         <img className="img-fluid col-sm-3" src={logo} alt="logo" />
 
-                        <h1 style={{textAlign:"center", paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie a conta da sua organização</h1>
+                        <h1 style={{ textAlign: "center", paddingTop: "100px", color: "#535353", fontWeight: 400, lineHeight: 1.2, fontSize: "20px" }}>Crie a conta da sua organização</h1>
                     </div>
                     <hr />
                     <Formik
@@ -80,10 +93,32 @@ function Sigin() {
                     >
                         {({ values, isValid }) => (
 
-                            <Form onSubmit={(e) => {
+                            <Form onSubmit={async (e) => {
                                 e.preventDefault()
-                                //handleCriarConta(values)
-                                createEstabelecimento(e,file,values)
+
+                                await createEstabelecimento(file, values).then((response) => {
+                                    const { id } = response.data
+                                    if (index.length > 0) {
+                                        profissionaisDataAserAdd.forEach((element) => {
+                                            const newValues = {
+                                                nome: element.values.nome,
+                                                clinicaConsultorioId: id,
+                                                //mock
+                                                especialidadeId: 1,
+                                                //mock
+                                                senha: element.values.senha,
+                                                crmCro: element.values.crmCro
+                                            }
+                                            console.log(newValues, element.file)
+                                            createProfissional(element.file, newValues)
+                                            
+                                        });
+                                    }
+
+                                })
+
+
+
 
 
                             }}  >
@@ -102,16 +137,24 @@ function Sigin() {
 
                                         <TextField icon={<BsPencil size={"1rem"} color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }} />} placeHolder={"Confirme a senha"} type="password" name="senha2" label={"Confirme a senha"} />
 
-                                        <input id="form-file" className="form-control" onChange={(event) => {
-                                            const file = event.target.files[0]
-                                            setFile(file)
-                                        }} type="file" name="logomarca" />
+
+                                        <div style={{ display: "flex", alignItems: "center", flexDirection: "column-reverse" }}>
+                                            <input id="form-file" className="form-control" onChange={(event) => {
+                                                const file = event.target.files[0]
+                                                setFile(file)
+
+
+                                            }} type="file" name="logomarca" />
+                                            {file ? <div className="form-control ">
+                                                <img style={{ maxWidth: "5rem" }} className="img-fluid" src={URL.createObjectURL(file)} alt="Imagem" /></div> : ""}
+                                        </div>
 
 
 
 
 
                                     </div>
+
 
 
 
@@ -165,7 +208,7 @@ function Sigin() {
                                         color: "rgb(119, 119, 119)"
                                     }}>Contatos</h5>
                                 <hr />
-                                <div style={{ marginBottom: "10px" }} className="row p-2">
+                                <div className="row p-2">
                                     <div className="col-sm-6">
                                         <TextField icon={<BsPencil size={"1rem"}
                                             color={"transparent"} style={{ left: "5px", zIndex: 2, position: "relative" }}
@@ -181,6 +224,36 @@ function Sigin() {
                                 </div>
 
 
+                                <h5
+                                    style={{
+                                        marginBottom: "15px",
+                                        marginTop: "30px", display: "flex",
+                                        justifyContent: "center", fontWeight: 400,
+                                        fontSize: "20px",
+                                        color: "rgb(119, 119, 119)"
+                                    }}>Profissionais</h5>
+
+
+
+                                {/*Campo de profissionais da clinica*/}
+
+
+                                <div style={{ maxHeight: "350px" }} className="p-4 overflow-auto border-end border-primary border-start" id="wrapperprofis">
+
+                                    <ul className="list-group">
+                                        {index.map((index) => {
+
+                                            return <li className="list-group-item border mb-3 "> <AdicionarProfis index={index} array={profissionaisDataAserAdd} /> </li>
+                                        })}
+                                    </ul>
+                                    <div className="mb-3 d-flex  justify-content-center">
+                                        <button type="button" style={{ color: "#2962ff" }} className="btn border " onClick={() => setIndex(index.concat(index.length))}>
+                                            Adicionar Profissional <AiOutlinePlusSquare />
+                                        </button>
+                                    </div>
+
+
+                                </div>
 
 
 
@@ -188,6 +261,7 @@ function Sigin() {
 
                                 <div className="d-flex justify-content-center">
                                     <button type="submit" style={{
+                                        marginTop: "30px",
                                         maxWidth: "fit-content",
                                         cursor: "pointer",
                                         backgroundColor: "#214ecc"
@@ -195,8 +269,14 @@ function Sigin() {
                                         Cadastrar
                                     </button >
                                 </div>
+
                             </Form>
+
+
+
+
                         )}
+
 
                     </Formik>
 
