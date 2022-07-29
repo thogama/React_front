@@ -1,12 +1,12 @@
 import axios from "axios"
 
-
+//const baseURL = "https://backend-orcilink.herokuapp.com"
+const baseURL =  "http://localhost:3333"
 export const api = axios.create({
-    baseURL:"https://backend-orcilink.herokuapp.com"
-    //baseURL: "http://localhost:3333"
+    baseURL: baseURL
 })
 
-export const createEstabelecimento = (e: any, file: any, values: any) => {
+export const createEstabelecimento = ( file: any, values: any) => {
     const data = new FormData()
     data.set("logomarca", file)
     data.set("email",values.email)
@@ -21,13 +21,9 @@ export const createEstabelecimento = (e: any, file: any, values: any) => {
     data.set("estado",values.estado)
     data.set("linkSite",values.link_site)
     data.set("telefone",values.telefone)
-    console.log(data)
-    const baseURL = "https://backend-orcilink.herokuapp.com/"
-    //const baseURL = "http://localhost:3333/estabelecimento/signin"
+    
 
-      axios.post(baseURL,data,).then((response)=>{
-          console.log(response)
-      })
+      return axios.post((baseURL+"/estabelecimento/signin"),data,)
 
 }
 
@@ -37,7 +33,7 @@ export const createSession = async (email: string, password: string) => {
 
 
 
-export const createPaciente = async(e:any,file:any,values:any,selects:any)=>{
+export const createPaciente = async(file:any,values:any,selects:any)=>{
         const data = new FormData()
         data.set("foto", file)
 
@@ -62,10 +58,9 @@ export const createPaciente = async(e:any,file:any,values:any,selects:any)=>{
         data.set("municipio",values.municipio)
         data.set("estado",values.estado)
         console.log(data)
-        const baseURL = "https://backend-orcilink.herokuapp.com/"
-        //const baseURL = "http://localhost:3333/paciente/signin"
-    
-          axios.post(baseURL,data,).then((response)=>{
+       
+        //mudar base url
+          axios.post(baseURL+"/paciente/signin",data,).then((response)=>{
               console.log(response)
           })
     
@@ -85,3 +80,17 @@ export const getStats = async () => {
     return api.post("stats")
 }
 
+export const createProfissional = async ( file: any, values: any)=>{
+    const data = new FormData
+    data.set("nome",values.nome)
+    data.set("clinicaConsultorioId",values.clinicaConsultorioId)
+    data.set("especialidadeId",values.especialidadeId)
+    data.set("senha",values.senha)
+    data.set("crmCro",values.crmCro)
+    data.set("foto", file)
+
+    
+    axios.post((baseURL+"/profissional/signin"),data,).then((response)=>{
+        console.log(response.data)
+    })
+}
