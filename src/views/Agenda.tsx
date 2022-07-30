@@ -47,10 +47,10 @@ function App() {
     <>
       <CardPesquisa />
       <div className="card p-4">
-        <h1>Agenda de Consultas</h1>
+        <h1 style={{color:"#2962ff"}}>Agenda de Consultas</h1>
         {/* events={allEvents} */}
         <Calendar startAccessor={"start"} endAccessor={"end"}
-         events={events} culture="pt-BR" localizer={localizer} style={{ height: 500, margin: "50px" }} />
+         events={events} culture="pt-BR" localizer={localizer} style={{ height: 500, margin: "" }} />
       </div>
 
 
