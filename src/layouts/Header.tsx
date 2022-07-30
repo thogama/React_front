@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { GiHamburgerMenu } from "react-icons/gi"
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { AiOutlineSearch } from "react-icons/ai"
@@ -22,10 +22,8 @@ const Header = () => {
   }
 
 
-  useEffect(() => {
-    console.log("info do user", all)
-  }, [all])
-
+ 
+  
 
   function handleSearch(e: any) {
     e.preventDefault()
@@ -88,7 +86,7 @@ const Header = () => {
             display: "block", objectFit: "cover",
             width: "2.5rem", borderRadius: "100%", border: "1px solid #2962ff ",
             padding: "1px"
-          }} src={localStorage.getItem("foto") || dummy} />
+          }} alt="avatar" src={localStorage.getItem("foto") || dummy} />
 
 
         </div>
