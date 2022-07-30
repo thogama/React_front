@@ -12,7 +12,7 @@ export const TextField = ({  ...props }) => {
             
             
             <div  className="mb-1 myField" style={{display:"flex",
-            alignItems:"center",backgroundColor:"#e8f0fe"}}>
+            alignItems:"center"}}>
              
              {props.icon}
 
