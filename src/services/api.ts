@@ -28,7 +28,7 @@ export const createEstabelecimento = ( file: any, values: any) => {
 }
 
 export const createSession = async (email: string, password: string) => {
-    return api.post("/paciente/login", { email: email, senha: password })
+    return api.post("/login", { email: email, senha: password })
 }
 
 
